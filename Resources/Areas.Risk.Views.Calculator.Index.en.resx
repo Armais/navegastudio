@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Trading Risk Calculator</value></data>
+  <data name="TradeParameters" xml:space="preserve"><value>Trade Parameters</value></data>
+  <data name="Tab_RiskCalculator" xml:space="preserve"><value>Risk Calculator</value></data>
+  <data name="Tab_PositionSizer" xml:space="preserve"><value>Position Sizer</value></data>
+  <data name="Label_AccountCapital" xml:space="preserve"><value>Account Capital ($)</value></data>
+  <data name="Label_PositionSize" xml:space="preserve"><value>Position Size (shares/units)</value></data>
+  <data name="Help_PositionSize" xml:space="preserve"><value>Number of shares/units you plan to trade</value></data>
+  <data name="Label_RiskPerTrade" xml:space="preserve"><value>Risk per Trade (%)</value></data>
+  <data name="Help_RiskPerTrade" xml:space="preserve"><value>Recommended: 1-2% of account</value></data>
+  <data name="Label_TradeDirection" xml:space="preserve"><value>Trade Direction</value></data>
+  <data name="Option_Long" xml:space="preserve"><value>Long (Buy)</value></data>
+  <data name="Option_Short" xml:space="preserve"><value>Short (Sell)</value></data>
+  <data name="Label_EntryPrice" xml:space="preserve"><value>Entry Price ($)</value></data>
+  <data name="Label_StopLoss" xml:space="preserve"><value>Stop Loss ($)</value></data>
+  <data name="Label_TakeProfit" xml:space="preserve"><value>Take Profit ($)</value></data>
+  <data name="Label_Optional" xml:space="preserve"><value>(optional)</value></data>
+  <data name="Label_Commission" xml:space="preserve"><value>Commission (%)</value></data>
+  <data name="Btn_Calculate" xml:space="preserve"><value>Calculate</value></data>
+  <data name="Results_PositionSizing" xml:space="preserve"><value>Position Sizing</value></data>
+  <data name="Results_SharesUnits" xml:space="preserve"><value>Shares/Units</value></data>
+  <data name="Results_PositionValue" xml:space="preserve"><value>Position Value</value></data>
+  <data name="Results_RiskMetrics" xml:space="preserve"><value>Risk Metrics</value></data>
+  <data name="Results_RiskPercent" xml:space="preserve"><value>Risk Percentage</value></data>
+  <data name="Results_RiskAmount" xml:space="preserve"><value>Risk Amount</value></data>
+  <data name="Results_StopDistance" xml:space="preserve"><value>Stop Loss Distance</value></data>
+  <data name="Results_MaxLoss" xml:space="preserve"><value>Max Loss (before fees)</value></data>
+  <data name="Results_Commission" xml:space="preserve"><value>Commission (round trip)</value></data>
+  <data name="Results_NetMaxLoss" xml:space="preserve"><value>Net Max Loss</value></data>
+  <data name="Results_PortfolioRisk" xml:space="preserve"><value>Portfolio Risk</value></data>
+  <data name="Results_Leverage" xml:space="preserve"><value>Leverage</value></data>
+  <data name="Results_RewardMetrics" xml:space="preserve"><value>Reward Metrics</value></data>
+  <data name="Results_TpDistance" xml:space="preserve"><value>Take Profit Distance</value></data>
+  <data name="Results_PotentialProfit" xml:space="preserve"><value>Potential Profit</value></data>
+  <data name="Results_NetProfit" xml:space="preserve"><value>Net Potential Profit</value></data>
+  <data name="Results_RR" xml:space="preserve"><value>Risk:Reward Ratio</value></data>
+  <data name="Results_Kelly" xml:space="preserve"><value>Kelly Criterion</value></data>
+  <data name="Results_VisualRisk" xml:space="preserve"><value>Visual Risk Level</value></data>
+  <data name="Empty_Title" xml:space="preserve"><value>Enter your trade parameters and click Calculate</value></data>
+  <data name="Empty_Description" xml:space="preserve"><value>Analyze risk for an existing position or size a new one based on your risk tolerance.</value></data>
+</root>

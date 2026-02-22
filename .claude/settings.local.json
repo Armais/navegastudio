@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "WebSearch",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(python -c:*)",
+      "Bash(cmd /c \"dir /B C:\\\\Users\\\\adiaz\\\\NuevasIdeasJuegosApps\\\\Juegos\\\\DashanDraw 2>&1\")",
+      "Bash(railway up --help:*)",
+      "Bash(railway variables:*)",
+      "Bash(railway up:*)",
+      "Bash(railway logs:*)",
+      "Bash(taskkill:*)"
+    ]
+  }
+}

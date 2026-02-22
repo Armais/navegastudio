@@ -1,0 +1,78 @@
+/* Risk Calculator - Dark Theme */
+.risk-calculator {
+    color: var(--ns-text);
+}
+
+.risk-calculator .card {
+    background: var(--ns-bg-card);
+    border: 1px solid var(--ns-border);
+}
+
+.risk-calculator .card-header {
+    border-bottom: 1px solid var(--ns-border);
+}
+
+.risk-calculator .card-header.bg-primary {
+    background: var(--ns-gradient-primary) !important;
+    border: none;
+}
+
+.risk-calculator .card-header.bg-success {
+    background: linear-gradient(135deg, #238636, #2ea043) !important;
+    border: none;
+    color: #fff;
+}
+
+.risk-calculator .card-header.bg-danger {
+    background: linear-gradient(135deg, #da3633, #f85149) !important;
+    border: none;
+    color: #fff;
+}
+
+.risk-calculator .card-header.bg-warning {
+    background: linear-gradient(135deg, #9e6a03, #d29922) !important;
+    border: none;
+    color: #fff;
+}
+
+.risk-calculator .bg-light {
+    background-color: var(--ns-bg-elevated) !important;
+    color: var(--ns-text) !important;
+}
+
+.risk-calculator .table {
+    color: var(--ns-text);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--ns-border);
+}
+
+.risk-calculator .table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: rgba(255, 255, 255, 0.02);
+    color: var(--ns-text);
+}
+
+.risk-calculator .progress {
+    background-color: var(--ns-bg-dark);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.risk-calculator .progress-bar {
+    transition: width 0.6s ease;
+}
+
+.risk-calculator .progress-bar.bg-success {
+    box-shadow: 0 0 8px rgba(63, 185, 80, 0.4);
+}
+
+.risk-calculator .progress-bar.bg-warning {
+    box-shadow: 0 0 8px rgba(210, 153, 34, 0.4);
+}
+
+.risk-calculator .progress-bar.bg-danger {
+    box-shadow: 0 0 8px rgba(248, 81, 73, 0.4);
+}
+
+.risk-calculator .text-muted {
+    color: var(--ns-text-secondary) !important;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="BackToBlog" xml:space="preserve"><value>Volver al Blog</value></data>
+  <data name="CTA_Title" xml:space="preserve"><value>¿Necesitas algo similar?</value></data>
+  <data name="CTA_Subtitle" xml:space="preserve"><value>Podemos construir sistemas financieros personalizados para tu negocio.</value></data>
+  <data name="CTA_Button" xml:space="preserve"><value>Contactar</value></data>
+</root>

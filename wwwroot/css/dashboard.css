@@ -1,0 +1,50 @@
+/* Crypto Dashboard - Dark Theme */
+.crypto-dashboard {
+    color: var(--ns-text);
+    padding: 1rem;
+}
+
+.crypto-dashboard .card {
+    background: var(--ns-glass-bg);
+    backdrop-filter: blur(var(--ns-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ns-glass-blur));
+    border: 1px solid var(--ns-glass-border);
+}
+
+.crypto-dashboard .card-header {
+    background: var(--ns-bg-elevated);
+    border-bottom: 1px solid var(--ns-border);
+}
+
+.crypto-dashboard .table {
+    color: var(--ns-text);
+}
+
+.crypto-dashboard .table thead th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ns-text-secondary);
+    border-bottom: 2px solid var(--ns-border);
+}
+
+.crypto-dashboard .table-dark {
+    --bs-table-bg: var(--ns-bg-card);
+    --bs-table-border-color: var(--ns-border);
+}
+
+.crypto-dashboard .text-up { color: var(--ns-success); }
+.crypto-dashboard .text-down { color: var(--ns-danger); }
+
+.crypto-dashboard .badge-exchange { font-size: 0.75rem; padding: 4px 8px; }
+
+.crypto-dashboard .pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.crypto-dashboard .arb-alert {
+    border-left: 4px solid var(--ns-accent);
+    background: var(--ns-bg-card);
+    border-radius: var(--ns-radius-sm);
+}
+
+.crypto-dashboard #connectionStatus { font-size: 0.8rem; }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Backtesting Engine</value></data>
+  <data name="CardHeader" xml:space="preserve"><value>Backtesting Engine</value></data>
+  <data name="CardDescription" xml:space="preserve"><value>Configure your backtest parameters and choose a trading strategy.</value></data>
+  <data name="Label_Strategy" xml:space="preserve"><value>Strategy</value></data>
+  <data name="Label_Symbol" xml:space="preserve"><value>Symbol</value></data>
+  <data name="Label_InitialCapital" xml:space="preserve"><value>Initial Capital ($)</value></data>
+  <data name="Label_StartDate" xml:space="preserve"><value>Start Date</value></data>
+  <data name="Label_EndDate" xml:space="preserve"><value>End Date</value></data>
+  <data name="ExecutionSettings" xml:space="preserve"><value>Execution Settings (click to expand)</value></data>
+  <data name="Label_RiskPerTrade" xml:space="preserve"><value>Risk Per Trade (%)</value></data>
+  <data name="Help_RiskPerTrade" xml:space="preserve"><value>100% = use all capital</value></data>
+  <data name="Label_Commission" xml:space="preserve"><value>Commission Per Trade ($)</value></data>
+  <data name="Help_Commission" xml:space="preserve"><value>Per entry/exit</value></data>
+  <data name="Label_Slippage" xml:space="preserve"><value>Slippage (%)</value></data>
+  <data name="Help_Slippage" xml:space="preserve"><value>Price impact</value></data>
+  <data name="Label_StopLoss" xml:space="preserve"><value>Stop-Loss (%)</value></data>
+  <data name="Help_StopLoss" xml:space="preserve"><value>Leave empty to disable</value></data>
+  <data name="Label_TakeProfit" xml:space="preserve"><value>Take-Profit (%)</value></data>
+  <data name="Help_TakeProfit" xml:space="preserve"><value>Leave empty to disable</value></data>
+  <data name="Btn_RunBacktest" xml:space="preserve"><value>Run Backtest</value></data>
+  <data name="HowItWorks" xml:space="preserve"><value>How it works</value></data>
+  <data name="EngineDescription" xml:space="preserve"><value>The engine calculates return, drawdown, Sharpe ratio, and win rate.</value></data>
+  <data name="Optgroup_USStocks" xml:space="preserve"><value>US Stocks</value></data>
+  <data name="Optgroup_Crypto" xml:space="preserve"><value>Crypto</value></data>
+  <data name="Optgroup_Forex" xml:space="preserve"><value>Forex</value></data>
+  <data name="Params_SMA" xml:space="preserve"><value>SMA Crossover Parameters</value></data>
+  <data name="Label_ShortSMA" xml:space="preserve"><value>Short SMA Period</value></data>
+  <data name="Help_ShortSMA" xml:space="preserve"><value>Fast moving average (default: 10)</value></data>
+  <data name="Label_LongSMA" xml:space="preserve"><value>Long SMA Period</value></data>
+  <data name="Help_LongSMA" xml:space="preserve"><value>Slow moving average (default: 50)</value></data>
+  <data name="Params_RSI" xml:space="preserve"><value>RSI Parameters</value></data>
+  <data name="Label_RSIPeriod" xml:space="preserve"><value>RSI Period</value></data>
+  <data name="Label_Oversold" xml:space="preserve"><value>Oversold Level</value></data>
+  <data name="Help_Oversold" xml:space="preserve"><value>Buy below (default: 30)</value></data>
+  <data name="Label_Overbought" xml:space="preserve"><value>Overbought Level</value></data>
+  <data name="Help_Overbought" xml:space="preserve"><value>Sell above (default: 70)</value></data>
+  <data name="Params_MACD" xml:space="preserve"><value>MACD Parameters</value></data>
+  <data name="Label_FastEMA" xml:space="preserve"><value>Fast EMA Period</value></data>
+  <data name="Label_SlowEMA" xml:space="preserve"><value>Slow EMA Period</value></data>
+  <data name="Label_SignalPeriod" xml:space="preserve"><value>Signal Period</value></data>
+  <data name="Params_Bollinger" xml:space="preserve"><value>Bollinger Bands Parameters</value></data>
+  <data name="Label_Period" xml:space="preserve"><value>Period</value></data>
+  <data name="Help_BollingerPeriod" xml:space="preserve"><value>SMA period (default: 20)</value></data>
+  <data name="Label_StdDevMultiplier" xml:space="preserve"><value>Std Dev Multiplier</value></data>
+  <data name="Help_StdDevMultiplier" xml:space="preserve"><value>Band width (default: 2.0)</value></data>
+  <data name="Params_EMA" xml:space="preserve"><value>EMA Crossover Parameters</value></data>
+  <data name="Label_ShortEMA" xml:space="preserve"><value>Short EMA Period</value></data>
+  <data name="Help_ShortEMA" xml:space="preserve"><value>Fast EMA (default: 12)</value></data>
+  <data name="Label_LongEMA" xml:space="preserve"><value>Long EMA Period</value></data>
+  <data name="Help_LongEMA" xml:space="preserve"><value>Slow EMA (default: 26)</value></data>
+  <data name="Params_Stochastic" xml:space="preserve"><value>Stochastic Oscillator Parameters</value></data>
+  <data name="Label_KPeriod" xml:space="preserve"><value>%K Period</value></data>
+  <data name="Label_DPeriod" xml:space="preserve"><value>%D Period</value></data>
+  <data name="Params_ADX" xml:space="preserve"><value>ADX Parameters</value></data>
+  <data name="Label_ADXPeriod" xml:space="preserve"><value>ADX Period</value></data>
+  <data name="Label_TrendThreshold" xml:space="preserve"><value>Trend Threshold</value></data>
+  <data name="Help_TrendThreshold" xml:space="preserve"><value>Min ADX for signal (default: 25)</value></data>
+  <data name="Params_Donchian" xml:space="preserve"><value>Donchian Breakout Parameters</value></data>
+  <data name="Label_EntryPeriod" xml:space="preserve"><value>Entry Period (High)</value></data>
+  <data name="Help_EntryPeriod" xml:space="preserve"><value>Breakout lookback (default: 20)</value></data>
+  <data name="Label_ExitPeriod" xml:space="preserve"><value>Exit Period (Low)</value></data>
+  <data name="Help_ExitPeriod" xml:space="preserve"><value>Exit lookback (default: 10)</value></data>
+  <data name="Params_VWAP" xml:space="preserve"><value>VWAP Cross Parameters</value></data>
+  <data name="Label_VWAPPeriod" xml:space="preserve"><value>VWAP Period</value></data>
+  <data name="Help_VWAPPeriod" xml:space="preserve"><value>Rolling window (default: 20)</value></data>
+  <data name="Params_ZScore" xml:space="preserve"><value>Mean Reversion Z-Score Parameters</value></data>
+  <data name="Label_LookbackPeriod" xml:space="preserve"><value>Lookback Period</value></data>
+  <data name="Label_EntryZScore" xml:space="preserve"><value>Entry Z-Score</value></data>
+  <data name="Help_EntryZScore" xml:space="preserve"><value>Std devs to enter (default: 2.0)</value></data>
+  <data name="Label_ExitZScore" xml:space="preserve"><value>Exit Z-Score</value></data>
+  <data name="Help_ExitZScore" xml:space="preserve"><value>Std devs to exit (default: 0.0)</value></data>
+  <data name="Info_SMA_Buy" xml:space="preserve"><value>Buy signal: Short SMA crosses above Long SMA (Golden Cross)</value></data>
+  <data name="Info_SMA_Sell" xml:space="preserve"><value>Sell signal: Short SMA crosses below Long SMA (Death Cross)</value></data>
+  <data name="Info_RSI_Buy" xml:space="preserve"><value>Buy signal: RSI crosses up through the oversold level</value></data>
+  <data name="Info_RSI_Sell" xml:space="preserve"><value>Sell signal: RSI crosses down through the overbought level</value></data>
+  <data name="Info_MACD_Buy" xml:space="preserve"><value>Buy signal: MACD line crosses above the signal line</value></data>
+  <data name="Info_MACD_Sell" xml:space="preserve"><value>Sell signal: MACD line crosses below the signal line</value></data>
+  <data name="Info_Bollinger_Buy" xml:space="preserve"><value>Buy signal: Price touches or crosses below the lower band (mean reversion)</value></data>
+  <data name="Info_Bollinger_Sell" xml:space="preserve"><value>Sell signal: Price touches or crosses above the upper band</value></data>
+  <data name="Info_EMA_Buy" xml:space="preserve"><value>Buy signal: Short EMA crosses above Long EMA</value></data>
+  <data name="Info_EMA_Sell" xml:space="preserve"><value>Sell signal: Short EMA crosses below Long EMA</value></data>
+  <data name="Info_Stochastic_Buy" xml:space="preserve"><value>Buy signal: %K crosses above %D in the oversold zone</value></data>
+  <data name="Info_Stochastic_Sell" xml:space="preserve"><value>Sell signal: %K crosses below %D in the overbought zone</value></data>
+  <data name="Info_ADX_Buy" xml:space="preserve"><value>Buy signal: +DI crosses above -DI with ADX above threshold (strong trend)</value></data>
+  <data name="Info_ADX_Sell" xml:space="preserve"><value>Sell signal: -DI crosses above +DI with ADX above threshold</value></data>
+  <data name="Info_Donchian_Buy" xml:space="preserve"><value>Buy signal: Price breaks above the upper Donchian channel (N-period high)</value></data>
+  <data name="Info_Donchian_Sell" xml:space="preserve"><value>Sell signal: Price breaks below the lower Donchian channel (M-period low)</value></data>
+  <data name="Info_VWAP_Buy" xml:space="preserve"><value>Buy signal: Price crosses above the rolling VWAP</value></data>
+  <data name="Info_VWAP_Sell" xml:space="preserve"><value>Sell signal: Price crosses below the rolling VWAP</value></data>
+  <data name="Info_ZScore_Buy" xml:space="preserve"><value>Buy signal: Z-score drops below -entry threshold (price is statistically cheap)</value></data>
+  <data name="Info_ZScore_Sell" xml:space="preserve"><value>Sell signal: Z-score rises above +entry threshold, or reverts to exit level</value></data>
+  <data name="Placeholder_Disabled" xml:space="preserve"><value>Disabled</value></data>
+  <data name="Default" xml:space="preserve"><value>Default</value></data>
+</root>

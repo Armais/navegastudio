@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Nav_Backtesting" xml:space="preserve"><value>Backtesting</value></data>
+  <data name="Nav_CryptoPrices" xml:space="preserve"><value>Precios Crypto</value></data>
+  <data name="Nav_RiskCalculator" xml:space="preserve"><value>Calculadora de Riesgo</value></data>
+  <data name="Nav_StartProject" xml:space="preserve"><value>Iniciar Proyecto</value></data>
+  <data name="Footer_Description" xml:space="preserve"><value>Sistemas de trading, dashboards en tiempo real&lt;br /&gt;y herramientas de gestión de riesgo.</value></data>
+  <data name="Footer_Tools" xml:space="preserve"><value>Herramientas</value></data>
+  <data name="Footer_BacktestingEngine" xml:space="preserve"><value>Motor de Backtesting</value></data>
+  <data name="Footer_CryptoAggregator" xml:space="preserve"><value>Agregador Crypto</value></data>
+  <data name="Footer_RiskCalculator" xml:space="preserve"><value>Calculadora de Riesgo</value></data>
+  <data name="Footer_Contact" xml:space="preserve"><value>Contacto</value></data>
+  <data name="Footer_Location" xml:space="preserve"><value>Madrid, España (CET)</value></data>
+  <data name="Footer_Response" xml:space="preserve"><value>Respondemos en menos de 24h</value></data>
+  <data name="Footer_Rights" xml:space="preserve"><value>&amp;copy; 2026 NavegaStudio. Todos los derechos reservados.</value></data>
+  <data name="Meta_Description" xml:space="preserve"><value>Desarrollo de Aplicaciones Financieras | Sistemas de Trading, Dashboards y Gestión de Riesgo</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>Sobre Nosotros</value></data>
+  <data name="Nav_Blog" xml:space="preserve"><value>Blog</value></data>
+  <data name="Nav_Contact" xml:space="preserve"><value>Contacto</value></data>
+  <data name="Footer_Company" xml:space="preserve"><value>Empresa</value></data>
+  <data name="Footer_About" xml:space="preserve"><value>Sobre Nosotros</value></data>
+  <data name="Footer_Blog" xml:space="preserve"><value>Blog</value></data>
+  <data name="Footer_ContactLink" xml:space="preserve"><value>Contacto</value></data>
+  <data name="Nav_FinancialApps" xml:space="preserve"><value>Apps Financieras</value></data>
+</root>

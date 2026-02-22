@@ -1,0 +1,160 @@
+@inject IViewLocalizer L
+@inject Microsoft.Extensions.Localization.IStringLocalizer<NavegaStudio.Resources.JsResource> JsL
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NavegaStudio</title>
+    <meta name="description" content="@L["Meta_Description"]" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="~/images/navegastudio-favicon.svg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- AOS Scroll Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Site CSS (must be AFTER bootstrap) -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-ns fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/navegastudio-icon.svg" alt="" class="navbar-logo-icon" />
+                    <span class="navbar-brand-text">NavegaStudio</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">@L["Nav_About"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">@L["Nav_Blog"]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@L["Nav_FinancialApps"]</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-area="Backtesting" asp-controller="Backtest" asp-action="Index">@L["Nav_Backtesting"]</a></li>
+                                <li><a class="dropdown-item" asp-area="Crypto" asp-controller="Dashboard" asp-action="Index">@L["Nav_CryptoPrices"]</a></li>
+                                <li><a class="dropdown-item" asp-area="Risk" asp-controller="Calculator" asp-action="Index">@L["Nav_RiskCalculator"]</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav-item dropdown d-flex align-items-center me-2">
+                        <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown">
+                            @(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "es" ? "ES" : "EN")
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/language/set/es">Español</a></li>
+                            <li><a class="dropdown-item" href="/language/set/en">English</a></li>
+                        </ul>
+                    </div>
+                    <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-ns-cta d-none d-lg-inline-block">@L["Nav_StartProject"]</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @if (ViewData["Title"]?.ToString() == "Home")
+    {
+        <main role="main">
+            @RenderBody()
+        </main>
+    }
+    else
+    {
+        <main role="main">
+            @RenderBody()
+        </main>
+    }
+
+    <footer class="footer-ns">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <div class="footer-brand d-flex align-items-center">
+                        <img src="~/images/navegastudio-icon.svg" alt="" class="footer-logo-icon" />
+                        <span>NavegaStudio</span>
+                    </div>
+                    <p class="mt-2 mb-0">@Html.Raw(L["Footer_Description"].Value)</p>
+                </div>
+                <div class="col-lg-3">
+                    <h6>@L["Footer_Tools"]</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><a asp-area="Backtesting" asp-controller="Backtest" asp-action="Index">@L["Footer_BacktestingEngine"]</a></li>
+                        <li class="mb-1"><a asp-area="Crypto" asp-controller="Dashboard" asp-action="Index">@L["Footer_CryptoAggregator"]</a></li>
+                        <li class="mb-1"><a asp-area="Risk" asp-controller="Calculator" asp-action="Index">@L["Footer_RiskCalculator"]</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6>@L["Footer_Company"]</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><a asp-area="" asp-controller="Home" asp-action="About">@L["Footer_About"]</a></li>
+                        <li class="mb-1"><a asp-area="" asp-controller="Blog" asp-action="Index">@L["Footer_Blog"]</a></li>
+                        <li class="mb-1"><a asp-area="" asp-controller="Home" asp-action="Contact">@L["Footer_ContactLink"]</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6>@L["Footer_Contact"]</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1"><a href="mailto:navegastudio2025@gmail.com">navegastudio2025@gmail.com</a></li>
+                        <li class="mb-1">@L["Footer_Location"]</li>
+                        <li class="mb-1">@L["Footer_Response"]</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                @Html.Raw(L["Footer_Rights"].Value)
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        window.i18n = {
+            connected: "@Html.Raw(JsL["Connected"].Value)",
+            disconnected: "@Html.Raw(JsL["Disconnected"].Value)",
+            reconnecting: "@Html.Raw(JsL["Reconnecting"].Value)",
+            connectionFailed: "@Html.Raw(JsL["ConnectionFailed"].Value)",
+            loadingPrices: "@Html.Raw(JsL["LoadingPrices"].Value)",
+            connecting: "@Html.Raw(JsL["Connecting"].Value)",
+            buyOn: "@Html.Raw(JsL["BuyOn"].Value)",
+            sellOn: "@Html.Raw(JsL["SellOn"].Value)",
+            spread: "@Html.Raw(JsL["Spread"].Value)",
+            arbitrageTitle: "@Html.Raw(JsL["ArbitrageTitle"].Value)",
+            riskCalcDesc: "@Html.Raw(JsL["RiskCalcDesc"].Value)",
+            posSizerDesc: "@Html.Raw(JsL["PosSizerDesc"].Value)",
+            errPositionSize: "@Html.Raw(JsL["ErrPositionSize"].Value)",
+            errRiskPercent: "@Html.Raw(JsL["ErrRiskPercent"].Value)",
+            errRequiredFields: "@Html.Raw(JsL["ErrRequiredFields"].Value)",
+            riskConservative: "@Html.Raw(JsL["RiskConservative"].Value)",
+            riskStandard: "@Html.Raw(JsL["RiskStandard"].Value)",
+            riskElevated: "@Html.Raw(JsL["RiskElevated"].Value)",
+            riskHigh: "@Html.Raw(JsL["RiskHigh"].Value)"
+        };
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

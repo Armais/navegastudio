@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Blog</value></data>
+  <data name="Badge" xml:space="preserve"><value>Technical Blog</value></data>
+  <data name="Hero_Title" xml:space="preserve"><value>Articles on Fintech &amp; Trading</value></data>
+  <data name="Hero_Subtitle" xml:space="preserve"><value>Technical insights on financial system development, API integration, and risk management.</value></data>
+  <data name="ReadMore" xml:space="preserve"><value>Read Article</value></data>
+</root>

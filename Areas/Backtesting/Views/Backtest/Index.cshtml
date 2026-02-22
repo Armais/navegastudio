@@ -1,0 +1,353 @@
+@model BacktestRequest
+@inject IViewLocalizer L
+
+@{
+    ViewData["Title"] = L["PageTitle"].Value;
+}
+
+<div class="container mt-4 pt-4" style="margin-top: 70px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow" data-aos="fade-up">
+                <div class="card-header">
+                    <h3 class="mb-0">@L["CardHeader"]</h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">@L["CardDescription"]</p>
+
+                    <form asp-area="Backtesting" asp-controller="Backtest" asp-action="Run" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="All" class="alert alert-danger" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="StrategyType" class="form-label fw-bold">@L["Label_Strategy"]</label>
+                                <select asp-for="StrategyType" class="form-select" id="strategySelect">
+                                    <option value="0">SMA Crossover</option>
+                                    <option value="1">RSI (Relative Strength Index)</option>
+                                    <option value="2">MACD</option>
+                                    <option value="3">Bollinger Bands</option>
+                                    <option value="4">EMA Crossover</option>
+                                    <option value="5">Stochastic Oscillator</option>
+                                    <option value="6">ADX (Average Directional Index)</option>
+                                    <option value="7">Donchian Breakout</option>
+                                    <option value="8">VWAP Cross</option>
+                                    <option value="9">Mean Reversion (Z-Score)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Symbol" class="form-label fw-bold">@L["Label_Symbol"]</label>
+                                <select asp-for="Symbol" class="form-select">
+                                    <optgroup label="@L["Optgroup_USStocks"]">
+                                        <option value="AAPL">AAPL - Apple</option>
+                                        <option value="MSFT">MSFT - Microsoft</option>
+                                        <option value="GOOGL">GOOGL - Alphabet</option>
+                                        <option value="TSLA">TSLA - Tesla</option>
+                                        <option value="AMZN">AMZN - Amazon</option>
+                                        <option value="META">META - Meta Platforms</option>
+                                        <option value="NVDA">NVDA - NVIDIA</option>
+                                        <option value="NFLX">NFLX - Netflix</option>
+                                        <option value="JPM">JPM - JPMorgan Chase</option>
+                                        <option value="BA">BA - Boeing</option>
+                                        <option value="DIS">DIS - Disney</option>
+                                        <option value="V">V - Visa</option>
+                                        <option value="WMT">WMT - Walmart</option>
+                                        <option value="KO">KO - Coca-Cola</option>
+                                        <option value="INTC">INTC - Intel</option>
+                                    </optgroup>
+                                    <optgroup label="@L["Optgroup_Crypto"]">
+                                        <option value="BTC">BTC - Bitcoin</option>
+                                        <option value="ETH">ETH - Ethereum</option>
+                                        <option value="SOL">SOL - Solana</option>
+                                        <option value="XRP">XRP - Ripple</option>
+                                        <option value="ADA">ADA - Cardano</option>
+                                        <option value="DOGE">DOGE - Dogecoin</option>
+                                    </optgroup>
+                                    <optgroup label="@L["Optgroup_Forex"]">
+                                        <option value="EUR/USD">EUR/USD</option>
+                                        <option value="GBP/USD">GBP/USD</option>
+                                        <option value="USD/JPY">USD/JPY</option>
+                                        <option value="AUD/USD">AUD/USD</option>
+                                        <option value="USD/CHF">USD/CHF</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label asp-for="InitialCapital" class="form-label fw-bold">@L["Label_InitialCapital"]</label>
+                                <input asp-for="InitialCapital" class="form-control" type="number" step="100" />
+                                <span asp-validation-for="InitialCapital" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="StartDate" class="form-label fw-bold">@L["Label_StartDate"]</label>
+                                <input asp-for="StartDate" class="form-control" type="date" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="EndDate" class="form-label fw-bold">@L["Label_EndDate"]</label>
+                                <input asp-for="EndDate" class="form-control" type="date" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <a class="btn btn-outline-secondary btn-sm w-100" data-bs-toggle="collapse" href="#executionSettings" role="button" aria-expanded="false" aria-controls="executionSettings">
+                                @L["ExecutionSettings"]
+                            </a>
+                            <div class="collapse mt-2" id="executionSettings">
+                                <div class="card card-body bg-dark border-secondary">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label asp-for="RiskPerTrade" class="form-label">@L["Label_RiskPerTrade"]</label>
+                                            <input asp-for="RiskPerTrade" class="form-control" type="number" step="0.1" min="0.1" max="100" />
+                                            <small class="text-muted">@L["Help_RiskPerTrade"]</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label asp-for="CommissionPerTrade" class="form-label">@L["Label_Commission"]</label>
+                                            <input asp-for="CommissionPerTrade" class="form-control" type="number" step="0.01" min="0" max="1000" />
+                                            <small class="text-muted">@L["Help_Commission"]</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label asp-for="SlippagePct" class="form-label">@L["Label_Slippage"]</label>
+                                            <input asp-for="SlippagePct" class="form-control" type="number" step="0.01" min="0" max="5" />
+                                            <small class="text-muted">@L["Help_Slippage"]</small>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="StopLossPct" class="form-label">@L["Label_StopLoss"]</label>
+                                            <input asp-for="StopLossPct" class="form-control" type="number" step="0.1" min="0" max="50" placeholder="@L["Placeholder_Disabled"]" />
+                                            <small class="text-muted">@L["Help_StopLoss"]</small>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="TakeProfitPct" class="form-label">@L["Label_TakeProfit"]</label>
+                                            <input asp-for="TakeProfitPct" class="form-control" type="number" step="0.1" min="0" max="200" placeholder="@L["Placeholder_Disabled"]" />
+                                            <small class="text-muted">@L["Help_TakeProfit"]</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-sma">
+                            <h6 class="text-muted mb-2">@L["Params_SMA"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_ShortSMA"]</label>
+                                    <input name="Parameters.ShortSmaPeriod" class="form-control" type="number" min="2" max="50" value="10" />
+                                    <small class="text-muted">@L["Help_ShortSMA"]</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_LongSMA"]</label>
+                                    <input name="Parameters.LongSmaPeriod" class="form-control" type="number" min="10" max="200" value="50" />
+                                    <small class="text-muted">@L["Help_LongSMA"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-rsi" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_RSI"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_RSIPeriod"]</label>
+                                    <input name="Parameters.RsiPeriod" class="form-control" type="number" min="2" max="100" value="14" />
+                                    <small class="text-muted">@L["Default"]: 14</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_Oversold"]</label>
+                                    <input name="Parameters.RsiOversold" class="form-control" type="number" min="1" max="49" value="30" />
+                                    <small class="text-muted">@L["Help_Oversold"]</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_Overbought"]</label>
+                                    <input name="Parameters.RsiOverbought" class="form-control" type="number" min="51" max="99" value="70" />
+                                    <small class="text-muted">@L["Help_Overbought"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-macd" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_MACD"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_FastEMA"]</label>
+                                    <input name="Parameters.MacdFastPeriod" class="form-control" type="number" min="2" max="50" value="12" />
+                                    <small class="text-muted">@L["Default"]: 12</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_SlowEMA"]</label>
+                                    <input name="Parameters.MacdSlowPeriod" class="form-control" type="number" min="10" max="200" value="26" />
+                                    <small class="text-muted">@L["Default"]: 26</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_SignalPeriod"]</label>
+                                    <input name="Parameters.MacdSignalPeriod" class="form-control" type="number" min="2" max="50" value="9" />
+                                    <small class="text-muted">@L["Default"]: 9</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-bollinger" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_Bollinger"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_Period"]</label>
+                                    <input name="Parameters.BollingerPeriod" class="form-control" type="number" min="5" max="100" value="20" />
+                                    <small class="text-muted">@L["Help_BollingerPeriod"]</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_StdDevMultiplier"]</label>
+                                    <input name="Parameters.BollingerMultiplier" class="form-control" type="number" min="0.5" max="5.0" step="0.1" value="2.0" />
+                                    <small class="text-muted">@L["Help_StdDevMultiplier"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-ema" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_EMA"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_ShortEMA"]</label>
+                                    <input name="Parameters.ShortEmaPeriod" class="form-control" type="number" min="2" max="50" value="12" />
+                                    <small class="text-muted">@L["Help_ShortEMA"]</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_LongEMA"]</label>
+                                    <input name="Parameters.LongEmaPeriod" class="form-control" type="number" min="10" max="200" value="26" />
+                                    <small class="text-muted">@L["Help_LongEMA"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-stochastic" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_Stochastic"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label class="form-label">@L["Label_KPeriod"]</label>
+                                    <input name="Parameters.StochasticKPeriod" class="form-control" type="number" min="2" max="100" value="14" />
+                                    <small class="text-muted">@L["Default"]: 14</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">@L["Label_DPeriod"]</label>
+                                    <input name="Parameters.StochasticDPeriod" class="form-control" type="number" min="1" max="50" value="3" />
+                                    <small class="text-muted">@L["Default"]: 3</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">@L["Label_Overbought"]</label>
+                                    <input name="Parameters.StochasticOverbought" class="form-control" type="number" min="51" max="99" value="80" />
+                                    <small class="text-muted">@L["Default"]: 80</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">@L["Label_Oversold"]</label>
+                                    <input name="Parameters.StochasticOversold" class="form-control" type="number" min="1" max="49" value="20" />
+                                    <small class="text-muted">@L["Default"]: 20</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-adx" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_ADX"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_ADXPeriod"]</label>
+                                    <input name="Parameters.AdxPeriod" class="form-control" type="number" min="2" max="100" value="14" />
+                                    <small class="text-muted">@L["Default"]: 14</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_TrendThreshold"]</label>
+                                    <input name="Parameters.AdxThreshold" class="form-control" type="number" min="1" max="99" value="25" />
+                                    <small class="text-muted">@L["Help_TrendThreshold"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-donchian" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_Donchian"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_EntryPeriod"]</label>
+                                    <input name="Parameters.DonchianEntryPeriod" class="form-control" type="number" min="2" max="200" value="20" />
+                                    <small class="text-muted">@L["Help_EntryPeriod"]</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_ExitPeriod"]</label>
+                                    <input name="Parameters.DonchianExitPeriod" class="form-control" type="number" min="2" max="200" value="10" />
+                                    <small class="text-muted">@L["Help_ExitPeriod"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-vwap" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_VWAP"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">@L["Label_VWAPPeriod"]</label>
+                                    <input name="Parameters.VwapPeriod" class="form-control" type="number" min="2" max="200" value="20" />
+                                    <small class="text-muted">@L["Help_VWAPPeriod"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-params" id="params-zscore" style="display:none;">
+                            <h6 class="text-muted mb-2">@L["Params_ZScore"]</h6>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_LookbackPeriod"]</label>
+                                    <input name="Parameters.ZScorePeriod" class="form-control" type="number" min="5" max="200" value="20" />
+                                    <small class="text-muted">@L["Default"]: 20</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_EntryZScore"]</label>
+                                    <input name="Parameters.ZScoreEntry" class="form-control" type="number" min="0.5" max="5.0" step="0.1" value="2.0" />
+                                    <small class="text-muted">@L["Help_EntryZScore"]</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">@L["Label_ExitZScore"]</label>
+                                    <input name="Parameters.ZScoreExit" class="form-control" type="number" min="0.0" max="4.0" step="0.1" value="0.0" />
+                                    <small class="text-muted">@L["Help_ExitZScore"]</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-ns-primary btn-lg w-100">@L["Btn_RunBacktest"]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4 shadow-sm" id="strategyInfo" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-body">
+                    <h5>@L["HowItWorks"]</h5>
+                    <div id="info-sma"><ul class="mb-0"><li><strong>@L["Info_SMA_Buy"]</strong></li><li><strong>@L["Info_SMA_Sell"]</strong></li></ul></div>
+                    <div id="info-rsi" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_RSI_Buy"]</strong></li><li><strong>@L["Info_RSI_Sell"]</strong></li></ul></div>
+                    <div id="info-macd" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_MACD_Buy"]</strong></li><li><strong>@L["Info_MACD_Sell"]</strong></li></ul></div>
+                    <div id="info-bollinger" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_Bollinger_Buy"]</strong></li><li><strong>@L["Info_Bollinger_Sell"]</strong></li></ul></div>
+                    <div id="info-ema" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_EMA_Buy"]</strong></li><li><strong>@L["Info_EMA_Sell"]</strong></li></ul></div>
+                    <div id="info-stochastic" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_Stochastic_Buy"]</strong></li><li><strong>@L["Info_Stochastic_Sell"]</strong></li></ul></div>
+                    <div id="info-adx" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_ADX_Buy"]</strong></li><li><strong>@L["Info_ADX_Sell"]</strong></li></ul></div>
+                    <div id="info-donchian" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_Donchian_Buy"]</strong></li><li><strong>@L["Info_Donchian_Sell"]</strong></li></ul></div>
+                    <div id="info-vwap" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_VWAP_Buy"]</strong></li><li><strong>@L["Info_VWAP_Sell"]</strong></li></ul></div>
+                    <div id="info-zscore" style="display:none;"><ul class="mb-0"><li><strong>@L["Info_ZScore_Buy"]</strong></li><li><strong>@L["Info_ZScore_Sell"]</strong></li></ul></div>
+                    <p class="text-muted mt-2 mb-0">@L["EngineDescription"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('strategySelect').addEventListener('change', function () {
+            var panels = document.querySelectorAll('.strategy-params');
+            panels.forEach(function (p) { p.style.display = 'none'; });
+            var infos = ['info-sma', 'info-rsi', 'info-macd', 'info-bollinger', 'info-ema', 'info-stochastic', 'info-adx', 'info-donchian', 'info-vwap', 'info-zscore'];
+            infos.forEach(function (id) { document.getElementById(id).style.display = 'none'; });
+            var map = { '0': 'sma', '1': 'rsi', '2': 'macd', '3': 'bollinger', '4': 'ema', '5': 'stochastic', '6': 'adx', '7': 'donchian', '8': 'vwap', '9': 'zscore' };
+            var key = map[this.value];
+            if (key) {
+                document.getElementById('params-' + key).style.display = 'block';
+                document.getElementById('info-' + key).style.display = 'block';
+            }
+        });
+    </script>
+}

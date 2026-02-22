@@ -1,0 +1,324 @@
+@inject IViewLocalizer L
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section">
+    <div id="tsparticles"></div>
+    <div class="hero-content">
+        <div data-aos="fade-up">
+            <span class="section-badge">@L["Hero_Badge"]</span>
+        </div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+            @L["Hero_Title"]<br />
+            <span class="gradient-text" id="typed-output"></span>
+        </h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+            @L["Hero_Subtitle"]
+        </p>
+        <div data-aos="fade-up" data-aos-delay="300">
+            <a href="#portfolio" class="btn btn-ns-primary me-2 mb-2">@L["Hero_ViewPortfolio"]</a>
+            <a asp-controller="Home" asp-action="Contact" class="btn btn-ns-outline mb-2">@L["Hero_StartProject"]</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS SECTION ===== -->
+<section class="section-dark">
+    <div class="container">
+        <div class="row g-4" data-aos="fade-up">
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number countup" data-target="10" data-suffix="+">0</div>
+                    <div class="stat-label">@L["Stats_TradingStrategies"]</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number countup" data-target="3">0</div>
+                    <div class="stat-label">@L["Stats_ExchangesIntegrated"]</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number countup" data-target="26" data-suffix="+">0</div>
+                    <div class="stat-label">@L["Stats_SymbolsSupported"]</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number countup" data-target="99.9" data-suffix="%" data-decimals="1">0</div>
+                    <div class="stat-label">@L["Stats_UptimeTarget"]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES SECTION ===== -->
+<section class="section-elevated" id="services">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <span class="section-badge">@L["Services_Badge"]</span>
+            <h2 class="section-title">@L["Services_Title"]</h2>
+            <p class="section-subtitle">@L["Services_Subtitle"]</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                    </div>
+                    <h5>@L["Services_TradingSystems"]</h5>
+                    <p>@L["Services_TradingDesc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h5>@L["Services_APIIntegrations"]</h5>
+                    <p>@L["Services_APIDesc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                    </div>
+                    <h5>@L["Services_Dashboards"]</h5>
+                    <p>@L["Services_DashboardsDesc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 offset-lg-2" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                    </div>
+                    <h5>@L["Services_Consulting"]</h5>
+                    <p>@L["Services_ConsultingDesc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+                    </div>
+                    <h5>@L["Services_Hosting"]</h5>
+                    <p>@L["Services_HostingDesc"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PORTFOLIO / TOOLS SECTION ===== -->
+<section class="section-dark" id="portfolio">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <span class="section-badge">@L["Portfolio_Badge"]</span>
+            <h2 class="section-title">@L["Portfolio_Title"]</h2>
+            <p class="section-subtitle">@L["Portfolio_Subtitle"]</p>
+        </div>
+        <div class="row g-4">
+            <!-- Backtesting Engine -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h5>@L["Portfolio_BacktestTitle"]</h5>
+                        <span class="tool-badge">@L["Portfolio_BacktestBadge"]</span>
+                    </div>
+                    <div class="tool-body">
+                        <p>@L["Portfolio_BacktestDesc"]</p>
+                        <ul class="tool-features">
+                            <li>@L["Portfolio_BacktestF1"]</li>
+                            <li>@L["Portfolio_BacktestF2"]</li>
+                            <li>@L["Portfolio_BacktestF3"]</li>
+                            <li>@L["Portfolio_BacktestF4"]</li>
+                        </ul>
+                    </div>
+                    <div class="tool-footer">
+                        <a asp-area="Backtesting" asp-controller="Backtest" asp-action="Index" class="btn btn-ns-primary w-100">@L["Portfolio_BacktestBtn"]</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Crypto Aggregator -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h5>@L["Portfolio_CryptoTitle"]</h5>
+                        <span class="tool-badge">@L["Portfolio_CryptoBadge"]</span>
+                    </div>
+                    <div class="tool-body">
+                        <p>@L["Portfolio_CryptoDesc"]</p>
+                        <ul class="tool-features">
+                            <li>@L["Portfolio_CryptoF1"]</li>
+                            <li>@L["Portfolio_CryptoF2"]</li>
+                            <li>@L["Portfolio_CryptoF3"]</li>
+                            <li>@L["Portfolio_CryptoF4"]</li>
+                        </ul>
+                    </div>
+                    <div class="tool-footer">
+                        <a asp-area="Crypto" asp-controller="Dashboard" asp-action="Index" class="btn btn-ns-primary w-100">@L["Portfolio_CryptoBtn"]</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Risk Calculator -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h5>@L["Portfolio_RiskTitle"]</h5>
+                        <span class="tool-badge">@L["Portfolio_RiskBadge"]</span>
+                    </div>
+                    <div class="tool-body">
+                        <p>@L["Portfolio_RiskDesc"]</p>
+                        <ul class="tool-features">
+                            <li>@L["Portfolio_RiskF1"]</li>
+                            <li>@L["Portfolio_RiskF2"]</li>
+                            <li>@L["Portfolio_RiskF3"]</li>
+                            <li>@L["Portfolio_RiskF4"]</li>
+                        </ul>
+                    </div>
+                    <div class="tool-footer">
+                        <a asp-area="Risk" asp-controller="Calculator" asp-action="Index" class="btn btn-ns-primary w-100">@L["Portfolio_RiskBtn"]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHY US SECTION ===== -->
+<section class="section-elevated" id="why">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <span class="section-badge">@L["Why_Badge"]</span>
+            <h2 class="section-title">@L["Why_Title"]</h2>
+            <p class="section-subtitle">@L["Why_Subtitle"]</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h5>@L["Why1_Title"]</h5>
+                    <p>@L["Why1_Desc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h5>@L["Why2_Title"]</h5>
+                    <p>@L["Why2_Desc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                    <h5>@L["Why3_Title"]</h5>
+                    <p>@L["Why3_Desc"]</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                    </div>
+                    <h5>@L["Why4_Title"]</h5>
+                    <p>@L["Why4_Desc"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section class="cta-section">
+    <div class="container" data-aos="fade-up">
+        <h2>@L["CTA_Title"]</h2>
+        <p>@L["CTA_Subtitle"]</p>
+        <a asp-controller="Home" asp-action="Contact" class="btn btn-ns-primary btn-lg">@L["CTA_Button"]</a>
+    </div>
+</section>
+
+@section Scripts {
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- CountUp.js -->
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+
+    <script>
+        // --- tsParticles Config ---
+        tsParticles.load("tsparticles", {
+            fullScreen: { enable: false },
+            particles: {
+                number: {
+                    value: window.innerWidth < 768 ? 30 : 70,
+                    density: { enable: true, area: 800 }
+                },
+                color: { value: "#0066CC" },
+                links: {
+                    enable: true,
+                    color: "#0066CC",
+                    distance: 150,
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.2,
+                    direction: "none",
+                    outModes: { default: "bounce" }
+                },
+                size: {
+                    value: { min: 1, max: 3 }
+                },
+                opacity: {
+                    value: { min: 0.3, max: 0.7 }
+                }
+            },
+            interactivity: {
+                events: {
+                    onHover: { enable: true, mode: "grab" },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 180,
+                        links: { opacity: 0.6 }
+                    }
+                }
+            },
+            detectRetina: true
+        });
+
+        // --- Typed.js Config ---
+        new Typed('#typed-output', {
+            strings: [
+                '@Html.Raw(L["Typed_TradingSystems"].Value)',
+                '@Html.Raw(L["Typed_CryptoAnalytics"].Value)',
+                '@Html.Raw(L["Typed_RiskManagement"].Value)',
+                '@Html.Raw(L["Typed_FinancialAPIs"].Value)',
+                '@Html.Raw(L["Typed_FintechSolutions"].Value)'
+            ],
+            typeSpeed: 60,
+            backSpeed: 40,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
+        // --- CountUp Init ---
+        initCountUpObserver();
+    </script>
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Resultados del Backtest</value></data>
+  <data name="Title" xml:space="preserve"><value>Resultados del Backtest</value></data>
+  <data name="NewBacktest" xml:space="preserve"><value>Nuevo Backtest</value></data>
+  <data name="Strategy" xml:space="preserve"><value>Estrategia</value></data>
+  <data name="Vs" xml:space="preserve"><value>vs</value></data>
+  <data name="BuyAndHold" xml:space="preserve"><value>Buy &amp; Hold</value></data>
+  <data name="BeatsMarket" xml:space="preserve"><value>SUPERA AL MERCADO</value></data>
+  <data name="Underperforms" xml:space="preserve"><value>INFERIOR AL MERCADO</value></data>
+  <data name="TotalReturn" xml:space="preserve"><value>Retorno Total</value></data>
+  <data name="FinalCapital" xml:space="preserve"><value>Capital Final</value></data>
+  <data name="From" xml:space="preserve"><value>desde</value></data>
+  <data name="MaxDrawdown" xml:space="preserve"><value>Drawdown Máximo</value></data>
+  <data name="SharpeRatio" xml:space="preserve"><value>Ratio de Sharpe</value></data>
+  <data name="TotalTrades" xml:space="preserve"><value>Operaciones Totales</value></data>
+  <data name="WinRate" xml:space="preserve"><value>Tasa de Acierto</value></data>
+  <data name="ProfitFactor" xml:space="preserve"><value>Factor de Beneficio</value></data>
+  <data name="SortinoRatio" xml:space="preserve"><value>Ratio de Sortino</value></data>
+  <data name="AvgWin" xml:space="preserve"><value>Ganancia Media</value></data>
+  <data name="AvgLoss" xml:space="preserve"><value>Pérdida Media</value></data>
+  <data name="Expectancy" xml:space="preserve"><value>Esperanza</value></data>
+  <data name="MaxConsecWins" xml:space="preserve"><value>Máx. Ganadoras Consec.</value></data>
+  <data name="MaxConsecLosses" xml:space="preserve"><value>Máx. Perdedoras Consec.</value></data>
+  <data name="TotalCosts" xml:space="preserve"><value>Costes Totales</value></data>
+  <data name="EquityCurve" xml:space="preserve"><value>Curva de Equity vs Buy &amp; Hold</value></data>
+  <data name="Drawdown" xml:space="preserve"><value>Drawdown</value></data>
+  <data name="TradePnL" xml:space="preserve"><value>Beneficio/Pérdida por Operación</value></data>
+  <data name="TradeHistory" xml:space="preserve"><value>Historial de Operaciones</value></data>
+  <data name="Col_EntryDate" xml:space="preserve"><value>Fecha Entrada</value></data>
+  <data name="Col_ExitDate" xml:space="preserve"><value>Fecha Salida</value></data>
+  <data name="Col_EntryPrice" xml:space="preserve"><value>Precio Entrada</value></data>
+  <data name="Col_ExitPrice" xml:space="preserve"><value>Precio Salida</value></data>
+  <data name="Col_Qty" xml:space="preserve"><value>Cant.</value></data>
+  <data name="Col_PnL" xml:space="preserve"><value>P&amp;L ($)</value></data>
+  <data name="Col_PnLPct" xml:space="preserve"><value>P&amp;L (%)</value></data>
+  <data name="Col_Type" xml:space="preserve"><value>Tipo</value></data>
+  <data name="Col_ExitReason" xml:space="preserve"><value>Razón de Salida</value></data>
+  <data name="Chart_Strategy" xml:space="preserve"><value>Estrategia ($)</value></data>
+  <data name="Chart_BuyHold" xml:space="preserve"><value>Buy &amp; Hold ($)</value></data>
+  <data name="Chart_DrawdownPct" xml:space="preserve"><value>Drawdown (%)</value></data>
+  <data name="Chart_PnL" xml:space="preserve"><value>P&amp;L ($)</value></data>
+  <data name="Chart_Trade" xml:space="preserve"><value>Operación</value></data>
+  <data name="W" xml:space="preserve"><value>G</value></data>
+  <data name="L" xml:space="preserve"><value>P</value></data>
+</root>

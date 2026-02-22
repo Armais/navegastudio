@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Nav_Backtesting" xml:space="preserve"><value>Backtesting</value></data>
+  <data name="Nav_CryptoPrices" xml:space="preserve"><value>Crypto Prices</value></data>
+  <data name="Nav_RiskCalculator" xml:space="preserve"><value>Risk Calculator</value></data>
+  <data name="Nav_StartProject" xml:space="preserve"><value>Start Project</value></data>
+  <data name="Footer_Description" xml:space="preserve"><value>Trading systems, real-time dashboards&lt;br /&gt;and risk management tools.</value></data>
+  <data name="Footer_Tools" xml:space="preserve"><value>Tools</value></data>
+  <data name="Footer_BacktestingEngine" xml:space="preserve"><value>Backtesting Engine</value></data>
+  <data name="Footer_CryptoAggregator" xml:space="preserve"><value>Crypto Aggregator</value></data>
+  <data name="Footer_RiskCalculator" xml:space="preserve"><value>Risk Calculator</value></data>
+  <data name="Footer_Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="Footer_Location" xml:space="preserve"><value>Madrid, Spain (CET)</value></data>
+  <data name="Footer_Response" xml:space="preserve"><value>We respond within 24 hours</value></data>
+  <data name="Footer_Rights" xml:space="preserve"><value>&amp;copy; 2026 NavegaStudio. All rights reserved.</value></data>
+  <data name="Meta_Description" xml:space="preserve"><value>Financial Application Development | Trading Systems, Dashboards &amp; Risk Management</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>About</value></data>
+  <data name="Nav_Blog" xml:space="preserve"><value>Blog</value></data>
+  <data name="Nav_Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="Footer_Company" xml:space="preserve"><value>Company</value></data>
+  <data name="Footer_About" xml:space="preserve"><value>About Us</value></data>
+  <data name="Footer_Blog" xml:space="preserve"><value>Blog</value></data>
+  <data name="Footer_ContactLink" xml:space="preserve"><value>Contact</value></data>
+  <data name="Nav_FinancialApps" xml:space="preserve"><value>Financial Apps</value></data>
+</root>

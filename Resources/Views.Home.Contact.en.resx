@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Contact</value></data>
+  <data name="Badge" xml:space="preserve"><value>Contact</value></data>
+  <data name="Hero_Title" xml:space="preserve"><value>Let's Talk About Your Project</value></data>
+  <data name="Hero_Subtitle" xml:space="preserve"><value>Need a trading system, a financial API, or a custom dashboard? Tell us your idea.</value></data>
+  <data name="Form_Title" xml:space="preserve"><value>Send Us a Message</value></data>
+  <data name="Form_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Form_NamePlaceholder" xml:space="preserve"><value>Your full name</value></data>
+  <data name="Form_Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Form_EmailPlaceholder" xml:space="preserve"><value>you@email.com</value></data>
+  <data name="Form_Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="Form_SubjectPlaceholder" xml:space="preserve"><value>How can we help you?</value></data>
+  <data name="Form_Message" xml:space="preserve"><value>Message</value></data>
+  <data name="Form_MessagePlaceholder" xml:space="preserve"><value>Describe your project, technical requirements, estimated timeline...</value></data>
+  <data name="Form_Submit" xml:space="preserve"><value>Send Message</value></data>
+  <data name="Form_Success" xml:space="preserve"><value>Message sent successfully. We'll respond within 24 hours.</value></data>
+  <data name="Info_Title" xml:space="preserve"><value>Contact Information</value></data>
+  <data name="Info_Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Info_Location" xml:space="preserve"><value>Location</value></data>
+  <data name="Info_LocationValue" xml:space="preserve"><value>Madrid, Spain (CET)</value></data>
+  <data name="Info_Schedule" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Info_ScheduleValue" xml:space="preserve"><value>Mon-Fri 9:00-18:00</value></data>
+  <data name="Info_Response" xml:space="preserve"><value>Response Time</value></data>
+  <data name="Info_ResponseValue" xml:space="preserve"><value>Under 24 hours</value></data>
+  <data name="Info_Profiles" xml:space="preserve"><value>Professional Profiles</value></data>
+</root>

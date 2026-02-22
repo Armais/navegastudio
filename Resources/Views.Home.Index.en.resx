@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Hero_Badge" xml:space="preserve"><value>Financial Software Development</value></data>
+  <data name="Hero_Title" xml:space="preserve"><value>We Build Financial Applications</value></data>
+  <data name="Hero_Subtitle" xml:space="preserve"><value>We design and develop trading systems, real-time dashboards, and risk management tools. Robust, fast, and production-ready applications.</value></data>
+  <data name="Hero_ViewPortfolio" xml:space="preserve"><value>View Portfolio</value></data>
+  <data name="Hero_StartProject" xml:space="preserve"><value>Start Project</value></data>
+  <data name="Typed_TradingSystems" xml:space="preserve"><value>Trading Systems</value></data>
+  <data name="Typed_CryptoAnalytics" xml:space="preserve"><value>Crypto Analytics</value></data>
+  <data name="Typed_RiskManagement" xml:space="preserve"><value>Risk Management</value></data>
+  <data name="Typed_FinancialAPIs" xml:space="preserve"><value>Financial APIs</value></data>
+  <data name="Typed_FintechSolutions" xml:space="preserve"><value>Fintech Solutions</value></data>
+  <data name="Stats_TradingStrategies" xml:space="preserve"><value>Strategies Implemented</value></data>
+  <data name="Stats_ExchangesIntegrated" xml:space="preserve"><value>Exchanges Connected</value></data>
+  <data name="Stats_SymbolsSupported" xml:space="preserve"><value>Assets Available</value></data>
+  <data name="Stats_UptimeTarget" xml:space="preserve"><value>Availability</value></data>
+  <data name="Services_Badge" xml:space="preserve"><value>What We Do</value></data>
+  <data name="Services_Title" xml:space="preserve"><value>Custom Applications</value></data>
+  <data name="Services_Subtitle" xml:space="preserve"><value>From algorithmic trading engines to real-time data platforms. Solutions that adapt to your business.</value></data>
+  <data name="Services_TradingSystems" xml:space="preserve"><value>Trading Systems</value></data>
+  <data name="Services_TradingDesc" xml:space="preserve"><value>Backtesting engines, algorithmic trading bots, and broker integrations. Your strategy, automated and optimized.</value></data>
+  <data name="Services_APIIntegrations" xml:space="preserve"><value>Integrations &amp; APIs</value></data>
+  <data name="Services_APIDesc" xml:space="preserve"><value>We connect your systems with exchanges, data providers, and financial platforms. Real-time data flows and automatic synchronization.</value></data>
+  <data name="Services_Dashboards" xml:space="preserve"><value>Dashboards &amp; Analytics</value></data>
+  <data name="Services_DashboardsDesc" xml:space="preserve"><value>Control panels with live data, performance reports, risk metrics, and alerts that keep you informed instantly.</value></data>
+  <data name="Services_Consulting" xml:space="preserve"><value>Technical Consulting</value></data>
+  <data name="Services_ConsultingDesc" xml:space="preserve"><value>Code audits, architecture design, performance optimization, and guidance to scale your financial platform.</value></data>
+  <data name="Services_Hosting" xml:space="preserve"><value>Hosting &amp; Maintenance</value></data>
+  <data name="Services_HostingDesc" xml:space="preserve"><value>Complete infrastructure management: continuous monitoring, automated backups, and security updates.</value></data>
+  <data name="Portfolio_Badge" xml:space="preserve"><value>Live Demos</value></data>
+  <data name="Portfolio_Title" xml:space="preserve"><value>Portfolio</value></data>
+  <data name="Portfolio_Subtitle" xml:space="preserve"><value>Working applications you can try right now. Each one solves a real problem in the financial world.</value></data>
+  <data name="Portfolio_BacktestTitle" xml:space="preserve"><value>Backtesting Engine</value></data>
+  <data name="Portfolio_BacktestBadge" xml:space="preserve"><value>10 Strategies</value></data>
+  <data name="Portfolio_BacktestDesc" xml:space="preserve"><value>Test your trading strategies against historical data before risking real capital. Detailed results with professional metrics.</value></data>
+  <data name="Portfolio_BacktestF1" xml:space="preserve"><value>SMA, RSI, MACD, Bollinger + 6 more</value></data>
+  <data name="Portfolio_BacktestF2" xml:space="preserve"><value>Equity curves &amp; profit charts</value></data>
+  <data name="Portfolio_BacktestF3" xml:space="preserve"><value>Sharpe, drawdown, win rate and more</value></data>
+  <data name="Portfolio_BacktestF4" xml:space="preserve"><value>26 assets with historical data included</value></data>
+  <data name="Portfolio_BacktestBtn" xml:space="preserve"><value>Try Backtesting</value></data>
+  <data name="Portfolio_CryptoTitle" xml:space="preserve"><value>Crypto Aggregator</value></data>
+  <data name="Portfolio_CryptoBadge" xml:space="preserve"><value>Real-Time</value></data>
+  <data name="Portfolio_CryptoDesc" xml:space="preserve"><value>Compare cryptocurrency prices across exchanges instantly and detect arbitrage opportunities automatically.</value></data>
+  <data name="Portfolio_CryptoF1" xml:space="preserve"><value>Data from Binance, Coinbase &amp; Kraken</value></data>
+  <data name="Portfolio_CryptoF2" xml:space="preserve"><value>Prices updated every 15 seconds</value></data>
+  <data name="Portfolio_CryptoF3" xml:space="preserve"><value>Arbitrage opportunity alerts</value></data>
+  <data name="Portfolio_CryptoF4" xml:space="preserve"><value>Live comparison charts</value></data>
+  <data name="Portfolio_CryptoBtn" xml:space="preserve"><value>View Dashboard</value></data>
+  <data name="Portfolio_RiskTitle" xml:space="preserve"><value>Risk Calculator</value></data>
+  <data name="Portfolio_RiskBadge" xml:space="preserve"><value>Pro Tool</value></data>
+  <data name="Portfolio_RiskDesc" xml:space="preserve"><value>Calculate optimal position sizes and manage your risk like a professional. Protect your capital on every trade.</value></data>
+  <data name="Portfolio_RiskF1" xml:space="preserve"><value>Automatic position sizing</value></data>
+  <data name="Portfolio_RiskF2" xml:space="preserve"><value>Risk:Reward &amp; Kelly Criterion</value></data>
+  <data name="Portfolio_RiskF3" xml:space="preserve"><value>Long &amp; Short with commissions</value></data>
+  <data name="Portfolio_RiskF4" xml:space="preserve"><value>Visual risk level indicator</value></data>
+  <data name="Portfolio_RiskBtn" xml:space="preserve"><value>Try Calculator</value></data>
+  <data name="Why_Badge" xml:space="preserve"><value>Our Approach</value></data>
+  <data name="Why_Title" xml:space="preserve"><value>Why Choose Us?</value></data>
+  <data name="Why_Subtitle" xml:space="preserve"><value>We combine financial market knowledge with software engineering to create applications that work in the real world.</value></data>
+  <data name="Why1_Title" xml:space="preserve"><value>Real Performance</value></data>
+  <data name="Why1_Desc" xml:space="preserve"><value>Fast, efficient applications that process financial data without delays. Your competitive edge starts with speed.</value></data>
+  <data name="Why2_Title" xml:space="preserve"><value>24/7 Reliability</value></data>
+  <data name="Why2_Desc" xml:space="preserve"><value>Systems designed to run without interruptions. Markets never sleep, neither do your tools.</value></data>
+  <data name="Why3_Title" xml:space="preserve"><value>Security First</value></data>
+  <data name="Why3_Desc" xml:space="preserve"><value>Secure architecture by design. Financial data protection, encryption, and industry best practices.</value></data>
+  <data name="Why4_Title" xml:space="preserve"><value>Scalable</value></data>
+  <data name="Why4_Desc" xml:space="preserve"><value>Your application grows with you. From a working prototype to a platform serving thousands of users.</value></data>
+  <data name="CTA_Title" xml:space="preserve"><value>Have an idea for your financial application?</value></data>
+  <data name="CTA_Subtitle" xml:space="preserve"><value>Tell us about your project. We build the solution you need.</value></data>
+  <data name="CTA_Button" xml:space="preserve"><value>Get in Touch</value></data>
+</root>

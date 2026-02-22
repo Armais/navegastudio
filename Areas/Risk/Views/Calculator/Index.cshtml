@@ -1,0 +1,146 @@
+@inject IViewLocalizer L
+@{
+    ViewData["Title"] = L["PageTitle"].Value;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/risk-calculator.css" />
+}
+
+<div class="container risk-calculator pt-4" style="margin-top: 70px;">
+    <div class="row g-4">
+        <!-- Input Form -->
+        <div class="col-lg-5">
+            <div class="card shadow" data-aos="fade-up">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">@L["TradeParameters"]</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills mode-tabs-dark mb-3" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="modeRiskCalc" type="button" onclick="switchMode('RiskCalculator')">@L["Tab_RiskCalculator"]</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="modePosSizer" type="button" onclick="switchMode('PositionSizer')">@L["Tab_PositionSizer"]</button>
+                        </li>
+                    </ul>
+                    <p id="modeDescription" class="text-muted small mb-3"></p>
+
+                    <div id="errorAlert" class="alert alert-danger d-none"></div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_AccountCapital"]</label>
+                        <input type="number" id="accountCapital" class="form-control" value="10000" step="100" min="100" />
+                    </div>
+
+                    <div class="mb-3" id="positionSizeGroup">
+                        <label class="form-label fw-bold">@L["Label_PositionSize"]</label>
+                        <input type="number" id="positionSize" class="form-control" step="1" min="1" placeholder="e.g. 100" />
+                        <div class="form-text">@L["Help_PositionSize"]</div>
+                    </div>
+
+                    <div class="mb-3 d-none" id="riskPercentGroup">
+                        <label class="form-label fw-bold">@L["Label_RiskPerTrade"]</label>
+                        <input type="number" id="riskPercent" class="form-control" value="2" step="0.1" min="0.1" max="100" />
+                        <div class="form-text">@L["Help_RiskPerTrade"]</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_TradeDirection"]</label>
+                        <select id="tradeDirection" class="form-select">
+                            <option value="Long">@L["Option_Long"]</option>
+                            <option value="Short">@L["Option_Short"]</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_EntryPrice"]</label>
+                        <input type="number" id="entryPrice" class="form-control" step="0.01" min="0.0001" placeholder="e.g. 150.00" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_StopLoss"]</label>
+                        <input type="number" id="stopLoss" class="form-control" step="0.01" min="0.0001" placeholder="e.g. 145.00" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_TakeProfit"] <span class="text-muted fw-normal">@L["Label_Optional"]</span></label>
+                        <input type="number" id="takeProfit" class="form-control" step="0.01" min="0.0001" placeholder="e.g. 165.00" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">@L["Label_Commission"]</label>
+                        <input type="number" id="commissionPercent" class="form-control" value="0.1" step="0.01" min="0" />
+                    </div>
+
+                    <button id="calculateBtn" class="btn btn-primary w-100 btn-lg">@L["Btn_Calculate"]</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-7">
+            <div id="resultsPanel" style="display: none;" data-aos="fade-up">
+                <div class="card shadow mb-3">
+                    <div class="card-header bg-success text-white"><h5 class="mb-0">@L["Results_PositionSizing"]</h5></div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6"><div class="text-center p-3 bg-light rounded"><div class="text-muted small">@L["Results_SharesUnits"]</div><div id="resPositionSize" class="fs-2 fw-bold text-primary">-</div></div></div>
+                            <div class="col-6"><div class="text-center p-3 bg-light rounded"><div class="text-muted small">@L["Results_PositionValue"]</div><div id="resPositionValue" class="fs-2 fw-bold">-</div></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-3">
+                    <div class="card-header bg-danger text-white"><h5 class="mb-0">@L["Results_RiskMetrics"]</h5></div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped mb-0">
+                            <tbody>
+                                <tr><td>@L["Results_RiskPercent"]</td><td id="resRiskPercent" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_RiskAmount"]</td><td id="resRiskAmount" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_StopDistance"]</td><td id="resStopDistance" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_MaxLoss"]</td><td id="resMaxLoss" class="fw-bold text-end text-danger">-</td></tr>
+                                <tr><td>@L["Results_Commission"]</td><td id="resCommission" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_NetMaxLoss"]</td><td id="resNetMaxLoss" class="fw-bold text-end text-danger">-</td></tr>
+                                <tr><td>@L["Results_PortfolioRisk"]</td><td id="resPortfolioRisk" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_Leverage"]</td><td id="resLeverage" class="fw-bold text-end">-</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tpSection" class="card shadow mb-3" style="display:none;">
+                    <div class="card-header bg-warning text-dark"><h5 class="mb-0">@L["Results_RewardMetrics"]</h5></div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped mb-0">
+                            <tbody>
+                                <tr><td>@L["Results_TpDistance"]</td><td id="resTpDistance" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_PotentialProfit"]</td><td id="resPotentialProfit" class="fw-bold text-end text-success">-</td></tr>
+                                <tr><td>@L["Results_NetProfit"]</td><td id="resNetProfit" class="fw-bold text-end text-success">-</td></tr>
+                                <tr><td>@L["Results_RR"]</td><td id="resRR" class="fw-bold text-end">-</td></tr>
+                                <tr><td>@L["Results_Kelly"]</td><td id="resKelly" class="fw-bold text-end">-</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-header"><h5 class="mb-0">@L["Results_VisualRisk"]</h5></div>
+                    <div class="card-body">
+                        <div class="progress" style="height: 30px;"><div id="riskBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div></div>
+                        <small id="riskAdvice" class="text-muted mt-2 d-block"></small>
+                    </div>
+                </div>
+            </div>
+
+            <div id="emptyState" class="text-center py-5">
+                <h4 class="text-muted">@L["Empty_Title"]</h4>
+                <p class="text-muted">@L["Empty_Description"]</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/calculator.js"></script>
+}

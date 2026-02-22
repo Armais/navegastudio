@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>About Us</value></data>
+  <data name="Badge" xml:space="preserve"><value>About NavegaStudio</value></data>
+  <data name="Hero_Title" xml:space="preserve"><value>High-Performance Financial Engineering</value></data>
+  <data name="Hero_Subtitle" xml:space="preserve"><value>Over 10 years of software development experience and 5 years specializing in financial markets.</value></data>
+  <data name="Bio_Title" xml:space="preserve"><value>Who We Are</value></data>
+  <data name="Bio_P1" xml:space="preserve"><value>NavegaStudio is a development studio specializing in high-performance financial applications. We build trading systems, data aggregators, and risk management tools using enterprise-grade technology.</value></data>
+  <data name="Bio_P2" xml:space="preserve"><value>Our approach combines deep knowledge of financial markets with top-tier software engineering. Every project is built with performance, security, and scalability as fundamental priorities.</value></data>
+  <data name="Skills_Badge" xml:space="preserve"><value>Specialties</value></data>
+  <data name="Skills_Title" xml:space="preserve"><value>Areas of Expertise</value></data>
+  <data name="Skill1_Title" xml:space="preserve"><value>Trading Systems</value></data>
+  <data name="Skill1_Desc" xml:space="preserve"><value>Backtesting engines, algorithmic trading, broker integration, and automated risk management.</value></data>
+  <data name="Skill2_Title" xml:space="preserve"><value>Financial APIs</value></data>
+  <data name="Skill2_Desc" xml:space="preserve"><value>Multi-exchange aggregators, REST APIs, WebSocket streaming, and portfolio synchronization.</value></data>
+  <data name="Skill3_Title" xml:space="preserve"><value>Dashboards &amp; Analytics</value></data>
+  <data name="Skill3_Desc" xml:space="preserve"><value>Real-time visualization, automated reports, performance metrics, and custom alerts.</value></data>
+  <data name="Skill4_Title" xml:space="preserve"><value>Technical Consulting</value></data>
+  <data name="Skill4_Desc" xml:space="preserve"><value>Code auditing, scalable architecture, performance optimization, and .NET migration.</value></data>
+  <data name="Method_Badge" xml:space="preserve"><value>Process</value></data>
+  <data name="Method_Title" xml:space="preserve"><value>Work Methodology</value></data>
+  <data name="Method1_Title" xml:space="preserve"><value>1. Discovery</value></data>
+  <data name="Method1_Desc" xml:space="preserve"><value>We understand your needs, define technical requirements, and design the optimal architecture.</value></data>
+  <data name="Method2_Title" xml:space="preserve"><value>2. Development</value></data>
+  <data name="Method2_Desc" xml:space="preserve"><value>Iterative implementation with demos at each milestone. Clean, tested, and documented code.</value></data>
+  <data name="Method3_Title" xml:space="preserve"><value>3. Delivery</value></data>
+  <data name="Method3_Desc" xml:space="preserve"><value>Production deployment, complete documentation, and 30 days of post-launch support included.</value></data>
+  <data name="Tech_Badge" xml:space="preserve"><value>Tech Stack</value></data>
+  <data name="Tech_Title" xml:space="preserve"><value>Technologies We Use</value></data>
+  <data name="Values_Badge" xml:space="preserve"><value>Philosophy</value></data>
+  <data name="Values_Title" xml:space="preserve"><value>Our Values</value></data>
+  <data name="Value1_Title" xml:space="preserve"><value>Quality over Quantity</value></data>
+  <data name="Value1_Desc" xml:space="preserve"><value>Clean, well-tested code. No shortcuts that create technical debt.</value></data>
+  <data name="Value2_Title" xml:space="preserve"><value>Full Transparency</value></data>
+  <data name="Value2_Desc" xml:space="preserve"><value>Working live demos, open-source portfolio code, clear communication.</value></data>
+  <data name="Value3_Title" xml:space="preserve"><value>Performance Matters</value></data>
+  <data name="Value3_Desc" xml:space="preserve"><value>Compiled C#, efficient architecture, constant optimization.</value></data>
+  <data name="Value4_Title" xml:space="preserve"><value>Long-Term Vision</value></data>
+  <data name="Value4_Desc" xml:space="preserve"><value>Lasting client relationships. Reputation before quick money.</value></data>
+  <data name="CTA_Title" xml:space="preserve"><value>Ready to build your financial system?</value></data>
+  <data name="CTA_Subtitle" xml:space="preserve"><value>Let's discuss your project and how we can help.</value></data>
+  <data name="CTA_Button" xml:space="preserve"><value>Get in Touch</value></data>
+</root>

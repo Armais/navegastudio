@@ -1,0 +1,48 @@
+@model IReadOnlyList<BlogPost>
+@inject IViewLocalizer L
+@{
+    ViewData["Title"] = L["PageTitle"].Value;
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+}
+
+<!-- ===== HERO ===== -->
+<section class="section-dark" style="padding-top: 7rem;">
+    <div class="container text-center">
+        <div data-aos="fade-up">
+            <span class="section-badge">@L["Badge"]</span>
+        </div>
+        <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">@L["Hero_Title"]</h1>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">@L["Hero_Subtitle"]</p>
+    </div>
+</section>
+
+<!-- ===== POSTS GRID ===== -->
+<section class="section-elevated">
+    <div class="container">
+        <div class="row g-4">
+            @foreach (var (post, i) in Model.OrderByDescending(p => p.Date).Select((p, i) => (p, i)))
+            {
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="@(i * 100)">
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h5>@post.GetTitle(culture)</h5>
+                            <span class="tool-badge">@post.Date.ToString("MMM yyyy")</span>
+                        </div>
+                        <div class="tool-body">
+                            <p>@post.GetSummary(culture)</p>
+                            <div>
+                                @foreach (var tag in post.Tags)
+                                {
+                                    <span class="tech-badge" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">@tag</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="tool-footer">
+                            <a asp-controller="Blog" asp-action="Post" asp-route-slug="@post.Slug" class="btn btn-ns-primary w-100">@L["ReadMore"]</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

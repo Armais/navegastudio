@@ -1,0 +1,66 @@
+@inject IViewLocalizer L
+@{
+    ViewData["Title"] = L["PageTitle"].Value;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+}
+
+<div class="container-fluid pt-4" style="margin-top: 70px;">
+<div class="crypto-dashboard">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">@L["Title"]</h4>
+        <span id="connectionStatus" class="text-warning pulse">@L["PageTitle"]...</span>
+    </div>
+
+    <!-- Arbitrage Alerts -->
+    <div id="arbitrageSection" class="mb-4" style="display:none;">
+        <h5 class="text-warning mb-3" id="arbitrageSectionTitle">@L["ArbitrageTitle"]</h5>
+        <div id="arbitrageCards" class="row g-3"></div>
+    </div>
+
+    <!-- Price Table -->
+    <div class="card shadow mb-4" data-aos="fade-up">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">@L["RealTimePrices"]</h5>
+            <small class="text-muted">@L["UpdateInterval"] <span id="lastUpdate">-</span></small>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>@L["Col_Symbol"]</th>
+                            <th>Binance</th>
+                            <th>Coinbase</th>
+                            <th>Kraken</th>
+                            <th>@L["Col_Spread"]</th>
+                            <th>@L["Col_24hChange"]</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceTable">
+                        <tr><td colspan="6" class="text-center py-4" id="loadingMsg"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price Chart -->
+    <div class="card shadow mb-4" data-aos="fade-up">
+        <div class="card-header">
+            <h5 class="mb-0">@L["PriceComparison"]</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="priceChart" height="80"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+}

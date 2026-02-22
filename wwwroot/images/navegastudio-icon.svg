@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="needle-grad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(24,24)">
+    <!-- Compass ring -->
+    <circle r="14.5" stroke="url(#ring-grad)" stroke-width="2.5"/>
+    <!-- North marker -->
+    <polygon points="0,-18.5 -2.8,-14.5 2.8,-14.5" fill="#3b82f6"/>
+    <!-- South marker -->
+    <polygon points="0,18.5 -2.8,14.5 2.8,14.5" fill="#3b82f6"/>
+    <!-- West < bracket -->
+    <polyline points="-13.5,-5.5 -19,0 -13.5,5.5" stroke="url(#ring-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- East > bracket -->
+    <polyline points="13.5,-5.5 19,0 13.5,5.5" stroke="url(#ring-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Compass needle NE (green = growth) -->
+    <polygon points="-2.2,-2.2 10.5,-10.5 2.2,2.2" fill="url(#needle-grad)"/>
+    <!-- Compass needle SW (dark blue = stability) -->
+    <polygon points="2.2,2.2 -10.5,10.5 -2.2,-2.2" fill="#1e3a8a" opacity="0.45"/>
+    <!-- Center dot -->
+    <circle r="2.2" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

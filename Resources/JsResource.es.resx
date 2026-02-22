@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <!-- Dashboard JS -->
+  <data name="Connected" xml:space="preserve"><value>Conectado</value></data>
+  <data name="Disconnected" xml:space="preserve"><value>Desconectado</value></data>
+  <data name="Reconnecting" xml:space="preserve"><value>Reconectando...</value></data>
+  <data name="ConnectionFailed" xml:space="preserve"><value>Conexión fallida - usando REST</value></data>
+  <data name="LoadingPrices" xml:space="preserve"><value>Cargando precios...</value></data>
+  <data name="Connecting" xml:space="preserve"><value>Conectando...</value></data>
+  <data name="BuyOn" xml:space="preserve"><value>Comprar en</value></data>
+  <data name="SellOn" xml:space="preserve"><value>Vender en</value></data>
+  <data name="Spread" xml:space="preserve"><value>Spread</value></data>
+  <data name="ArbitrageTitle" xml:space="preserve"><value>Oportunidades de Arbitraje</value></data>
+  <!-- Calculator JS -->
+  <data name="RiskCalcDesc" xml:space="preserve"><value>Introduce el tamaño de tu posición para calcular el porcentaje de riesgo de tu cuenta.</value></data>
+  <data name="PosSizerDesc" xml:space="preserve"><value>Introduce tu porcentaje de riesgo deseado para calcular el tamaño óptimo de posición.</value></data>
+  <data name="ErrPositionSize" xml:space="preserve"><value>Por favor rellena el Tamaño de Posición.</value></data>
+  <data name="ErrRiskPercent" xml:space="preserve"><value>Por favor rellena el Porcentaje de Riesgo.</value></data>
+  <data name="ErrRequiredFields" xml:space="preserve"><value>Por favor rellena Capital, Precio de Entrada y Stop Loss.</value></data>
+  <data name="RiskConservative" xml:space="preserve"><value>Nivel de riesgo conservador. Dentro de límites seguros.</value></data>
+  <data name="RiskStandard" xml:space="preserve"><value>Nivel de riesgo estándar. Dentro del rango recomendado (1-2%).</value></data>
+  <data name="RiskElevated" xml:space="preserve"><value>Riesgo elevado. Considera reducir el tamaño de la posición.</value></data>
+  <data name="RiskHigh" xml:space="preserve"><value>¡Riesgo alto! Excede los niveles recomendados. Reduce la posición o amplía el stop loss.</value></data>
+</root>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve"><value>Agregador de Precios Crypto</value></data>
+  <data name="Title" xml:space="preserve"><value>Agregador de Precios Crypto</value></data>
+  <data name="ArbitrageTitle" xml:space="preserve"><value>Oportunidades de Arbitraje</value></data>
+  <data name="RealTimePrices" xml:space="preserve"><value>Precios en Tiempo Real</value></data>
+  <data name="UpdateInterval" xml:space="preserve"><value>Actualiza cada 15s | Última:</value></data>
+  <data name="Col_Symbol" xml:space="preserve"><value>Símbolo</value></data>
+  <data name="Col_Spread" xml:space="preserve"><value>Spread</value></data>
+  <data name="Col_24hChange" xml:space="preserve"><value>Cambio 24h</value></data>
+  <data name="PriceComparison" xml:space="preserve"><value>Comparación de Precios</value></data>
+</root>

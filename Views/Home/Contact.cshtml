@@ -1,0 +1,99 @@
+@model ContactRequest
+@inject IViewLocalizer L
+@{
+    ViewData["Title"] = L["PageTitle"].Value;
+}
+
+<!-- ===== HERO ===== -->
+<section class="section-dark" style="padding-top: 7rem;">
+    <div class="container text-center">
+        <div data-aos="fade-up">
+            <span class="section-badge">@L["Badge"]</span>
+        </div>
+        <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">@L["Hero_Title"]</h1>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">@L["Hero_Subtitle"]</p>
+    </div>
+</section>
+
+<!-- ===== FORM + INFO ===== -->
+<section class="section-elevated">
+    <div class="container">
+        <div class="row g-5 justify-content-center">
+            <!-- Contact Form -->
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="card-glass p-4">
+                    <h4 class="mb-4">@L["Form_Title"]</h4>
+
+                    @if (TempData["ContactSuccess"] != null)
+                    {
+                        <div class="alert alert-success" style="background: rgba(63,185,80,0.1); border-color: rgba(63,185,80,0.3); color: var(--ns-success);">
+                            @L["Form_Success"]
+                        </div>
+                    }
+
+                    <form asp-action="Contact" asp-controller="Home" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">@L["Form_Name"]</label>
+                            <input asp-for="Name" class="form-control" placeholder="@L["Form_NamePlaceholder"]" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">@L["Form_Email"]</label>
+                            <input asp-for="Email" class="form-control" type="email" placeholder="@L["Form_EmailPlaceholder"]" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Subject" class="form-label">@L["Form_Subject"]</label>
+                            <input asp-for="Subject" class="form-control" placeholder="@L["Form_SubjectPlaceholder"]" />
+                            <span asp-validation-for="Subject" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Message" class="form-label">@L["Form_Message"]</label>
+                            <textarea asp-for="Message" class="form-control" rows="6" placeholder="@L["Form_MessagePlaceholder"]"></textarea>
+                            <span asp-validation-for="Message" class="text-danger small"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-ns-primary w-100">@L["Form_Submit"]</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="mb-4">@L["Info_Title"]</h4>
+
+                <div class="mb-4">
+                    <h6 class="text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em;">@L["Info_Email"]</h6>
+                    <a href="mailto:navegastudio2025@gmail.com" class="d-block">navegastudio2025@gmail.com</a>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em;">@L["Info_Location"]</h6>
+                    <span>@L["Info_LocationValue"]</span>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em;">@L["Info_Response"]</h6>
+                    <span>@L["Info_ResponseValue"]</span>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em;">@L["Info_Profiles"]</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-1"><a href="https://github.com/navegastudio" target="_blank" rel="noopener">GitHub</a></li>
+                        <li class="mb-1"><a href="https://linkedin.com/in/navegastudio" target="_blank" rel="noopener">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

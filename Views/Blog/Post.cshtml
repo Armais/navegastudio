@@ -1,0 +1,48 @@
+@model BlogPost
+@inject IViewLocalizer L
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    ViewData["Title"] = Model.GetTitle(culture);
+}
+
+<!-- ===== ARTICLE ===== -->
+<section class="section-dark" style="padding-top: 7rem;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" data-aos="fade-up">
+                    <a asp-controller="Blog" asp-action="Index" class="text-muted" style="font-size: 0.9rem;">
+                        &larr; @L["BackToBlog"]
+                    </a>
+                </nav>
+
+                <!-- Header -->
+                <div class="mt-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-3">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <span class="tech-badge" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">@tag</span>
+                        }
+                    </div>
+                    <h1 class="section-title" style="font-size: 2.4rem;">@Model.GetTitle(culture)</h1>
+                    <p class="text-muted">@Model.Date.ToString("dd MMMM yyyy")</p>
+                </div>
+
+                <!-- Content -->
+                <div class="blog-content" data-aos="fade-up" data-aos-delay="200">
+                    @Html.Raw(Model.GetContent(culture))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+    <div class="container" data-aos="fade-up">
+        <h2>@L["CTA_Title"]</h2>
+        <p>@L["CTA_Subtitle"]</p>
+        <a asp-controller="Home" asp-action="Contact" class="btn btn-ns-primary btn-lg">@L["CTA_Button"]</a>
+    </div>
+</section>
