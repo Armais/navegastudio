@@ -1,0 +1,221 @@
+@using NavegaStudio.Areas.Escrow.Helpers
+@model EscrowViewModel
+@{
+    ViewData["Title"] = $"Escrow #{Model.Escrow.Id}";
+    var isDemoMode = (bool)(ViewBag.IsDemoMode ?? true);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/escrow.css" asp-append-version="true" />
+}
+
+<div class="peer-escrow" style="margin-top: 70px;">
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-area="Escrow" asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active">Escrow #@Model.Escrow.Id</li>
+            </ol>
+        </nav>
+
+        @if (isDemoMode)
+        {
+            <div class="alert alert-warning mb-4">
+                <strong>Demo Mode</strong> &mdash; Use the role buttons below to simulate actions as different parties.
+            </div>
+        }
+
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h2 class="mb-1">Escrow #@Model.Escrow.Id</h2>
+                <p class="text-muted mb-0">@Model.Escrow.Description</p>
+            </div>
+            <span class="badge fs-6 @Model.StateBadgeClass">@Model.Escrow.State</span>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="card mb-4" style="background: var(--pe-bg-card); border-color: var(--pe-border);">
+            <div class="card-body">
+                @{
+                    var states = new[] { "Funded", "Shipped", "Completed" };
+                    var currentIdx = Model.Escrow.State switch
+                    {
+                        EscrowState.Funded => 0,
+                        EscrowState.Shipped => 1,
+                        EscrowState.Completed => 2,
+                        EscrowState.Disputed => 1,
+                        EscrowState.Resolved => 2,
+                        EscrowState.Cancelled => -1,
+                        _ => -1
+                    };
+                    var isDisputed = Model.Escrow.State == EscrowState.Disputed;
+                    var isResolved = Model.Escrow.State == EscrowState.Resolved;
+                    var isCancelled = Model.Escrow.State == EscrowState.Cancelled;
+                }
+                <div class="d-flex justify-content-between position-relative mb-2" style="z-index: 1;">
+                    @for (int i = 0; i < states.Length; i++)
+                    {
+                        var done = i <= currentIdx;
+                        var circleClass = done ? "bg-success" : "bg-secondary";
+                        if (isDisputed && i > currentIdx) circleClass = "bg-secondary";
+                        if (isCancelled) circleClass = i == 0 ? "bg-dark" : "bg-secondary";
+                        <div class="text-center" style="flex: 1;">
+                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center @circleClass"
+                                 style="width: 36px; height: 36px; font-size: 0.8rem; color: white;">
+                                @(done ? "\u2713" : (i + 1).ToString())
+                            </div>
+                            <div class="small mt-1 @(done ? "" : "text-muted")">@states[i]</div>
+                        </div>
+                    }
+                </div>
+                @if (isDisputed)
+                {
+                    <div class="text-center mt-2">
+                        <span class="badge bg-danger">DISPUTED</span>
+                        <span class="text-muted small ms-2">@Model.Escrow.DisputeReason</span>
+                    </div>
+                }
+                @if (isResolved)
+                {
+                    <div class="text-center mt-2">
+                        <span class="badge bg-info">RESOLVED BY ARBITER</span>
+                    </div>
+                }
+                @if (isCancelled)
+                {
+                    <div class="text-center mt-2">
+                        <span class="badge bg-dark">CANCELLED &mdash; Funds refunded to buyer</span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Details -->
+            <div class="col-lg-6">
+                <div class="card h-100" style="background: var(--pe-bg-card); border-color: var(--pe-border);">
+                    <div class="card-header"><h5 class="mb-0">Details</h5></div>
+                    <div class="card-body">
+                        <table class="table table-sm" style="--bs-table-bg: transparent;">
+                            <tr>
+                                <td class="text-muted">Amount</td>
+                                <td class="fw-bold">@EthFormat.FormatEthWithUnit(Model.Escrow.Amount)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Arbiter Fee</td>
+                                <td>@Model.ArbiterFeePercent.ToString("F2")% (@EthFormat.FormatEthWithUnit(Model.ArbiterFeeEth))</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Seller Payout</td>
+                                <td class="text-success">@EthFormat.FormatEthWithUnit(Model.SellerPayout)</td>
+                            </tr>
+                            <tr><td colspan="2"><hr class="my-1" /></td></tr>
+                            <tr>
+                                <td class="text-muted">Buyer</td>
+                                <td><code class="small">@Model.Escrow.Buyer</code></td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Seller</td>
+                                <td><code class="small">@Model.Escrow.Seller</code></td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Arbiter</td>
+                                <td><code class="small">@Model.Escrow.Arbiter</code></td>
+                            </tr>
+                            <tr><td colspan="2"><hr class="my-1" /></td></tr>
+                            <tr>
+                                <td class="text-muted">Created</td>
+                                <td>@Model.Escrow.CreatedAt.ToString("yyyy-MM-dd HH:mm UTC")</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Last Updated</td>
+                                <td>@Model.Escrow.UpdatedAt.ToString("yyyy-MM-dd HH:mm UTC")</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions + Timeline -->
+            <div class="col-lg-6">
+                <!-- Actions -->
+                <div class="card mb-4" style="background: var(--pe-bg-card); border-color: var(--pe-border);"
+                     id="actions-card" data-escrow-id="@Model.Escrow.Id"
+                     data-buyer="@Model.Escrow.Buyer" data-seller="@Model.Escrow.Seller" data-arbiter="@Model.Escrow.Arbiter"
+                     data-state="@Model.Escrow.State">
+                    <div class="card-header"><h5 class="mb-0">Actions</h5></div>
+                    <div class="card-body">
+                        @if (isDemoMode)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small text-muted">Act as:</label>
+                                <div class="btn-group w-100" role="group">
+                                    <button class="btn btn-sm btn-outline-primary role-btn active" data-role="buyer" data-address="@Model.Escrow.Buyer">Buyer</button>
+                                    <button class="btn btn-sm btn-outline-primary role-btn" data-role="seller" data-address="@Model.Escrow.Seller">Seller</button>
+                                    <button class="btn btn-sm btn-outline-primary role-btn" data-role="arbiter" data-address="@Model.Escrow.Arbiter">Arbiter</button>
+                                </div>
+                            </div>
+                        }
+
+                        <div id="action-buttons">
+                            <!-- Populated by JS based on state + current role -->
+                        </div>
+
+                        <!-- Dispute modal input -->
+                        <div class="collapse mt-3" id="dispute-input">
+                            <textarea class="form-control mb-2" id="dispute-reason" rows="2" placeholder="Reason for dispute..."></textarea>
+                            <button class="btn btn-danger btn-sm" id="btn-submit-dispute">Submit Dispute</button>
+                        </div>
+
+                        <!-- Resolve modal input -->
+                        <div class="collapse mt-3" id="resolve-input">
+                            <label class="form-label small">Buyer refund percentage (0-100)</label>
+                            <input type="range" class="form-range" id="resolve-percent" min="0" max="100" value="50" />
+                            <div class="d-flex justify-content-between small text-muted mb-2">
+                                <span>Buyer: <span id="resolve-buyer-pct">50</span>%</span>
+                                <span>Seller: <span id="resolve-seller-pct">50</span>%</span>
+                            </div>
+                            <button class="btn btn-info btn-sm" id="btn-submit-resolve">Resolve Dispute</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="card" style="background: var(--pe-bg-card); border-color: var(--pe-border);">
+                    <div class="card-header"><h5 class="mb-0">Timeline</h5></div>
+                    <div class="card-body">
+                        <div class="timeline">
+                            @foreach (var evt in Model.Escrow.Events.OrderByDescending(e => e.Timestamp))
+                            {
+                                var evtBadge = evt.Action switch
+                                {
+                                    "Created" => "bg-secondary",
+                                    "Funded" => "bg-primary",
+                                    "Shipped" => "bg-warning text-dark",
+                                    "Completed" => "bg-success",
+                                    "Disputed" => "bg-danger",
+                                    "Resolved" => "bg-info",
+                                    "Cancelled" => "bg-dark",
+                                    _ => "bg-secondary"
+                                };
+                                <div class="timeline-item mb-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge @evtBadge">@evt.Action</span>
+                                        <small class="text-muted">@evt.Timestamp.ToString("HH:mm:ss UTC")</small>
+                                    </div>
+                                    <div class="small mt-1">@evt.Details</div>
+                                    <div class="small text-muted">by <code>@evt.PerformedBy[..8]...@evt.PerformedBy[^4..]</code></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/escrow.js" asp-append-version="true"></script>
+}

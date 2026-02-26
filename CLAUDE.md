@@ -1,7 +1,7 @@
 # NAVEGASTUDIO.ES - Portfolio & Consultoría Fintech
 
-**Ultima actualizacion:** 22 Febrero 2026
-**Estado:** Proyecto unificado - 3 apps integradas + About/Blog/Contact en un solo sitio ASP.NET Core 8 con Areas. Backtesting engine v2 (realista) implementado. Crypto dashboard con precios corregidos. i18n (ES/EN) implementado. Email SMTP (Gmail + MailKit) implementado. Desplegado en Railway.
+**Ultima actualizacion:** 26 Febrero 2026
+**Estado:** Proyecto unificado - 4 apps integradas + About/Blog/Contact en un solo sitio ASP.NET Core 8 con Areas. Backtesting engine v2 (realista) implementado. Crypto dashboard con precios corregidos. Peer Escrow P2P (Ethereum demo mode) integrado. i18n (ES/EN) implementado. Email SMTP (Gmail + MailKit) implementado. Desplegado en Railway.
 
 ---
 
@@ -72,14 +72,14 @@ Desarrollo de sistemas de trading, análisis financiero y aplicaciones fintech u
 
 ### **Proyecto unificado: NavegaStudio**
 
-Las 3 aplicaciones han sido integradas en un **unico proyecto ASP.NET Core 8** usando el patron **Areas** para mantener separacion logica con navegacion compartida.
+Las 4 aplicaciones han sido integradas en un **unico proyecto ASP.NET Core 8** usando el patron **Areas** para mantener separacion logica con navegacion compartida.
 
 **Estructura del proyecto:**
 ```
 NavegaStudio/
   NavegaStudio.csproj           # Paquetes combinados
   Program.cs                     # DI, rutas, hubs, seeding
-  appsettings.json               # BacktestConnection + CryptoConnection
+  appsettings.json               # BacktestConnection + CryptoConnection + EscrowConnection
 
   Controllers/HomeController.cs  # Landing page + About + Contact
   Controllers/BlogController.cs  # Blog (lista + detalle por slug)
@@ -95,7 +95,9 @@ NavegaStudio/
   Data/
     BacktestDbContext.cs          # BD backtesting (PostgreSQL/InMemory)
     CryptoDbContext.cs            # BD crypto (PostgreSQL/InMemory)
+    EscrowDbContext.cs            # BD escrow (PostgreSQL/InMemory)
     DataSeeder.cs                 # 26 simbolos, 300 dias datos sinteticos
+    EscrowDataSeeder.cs           # 3 escrows demo (Funded, Shipped, Completed)
 
   Areas/
     Backtesting/                  # Motor de backtesting
@@ -118,6 +120,13 @@ NavegaStudio/
       Services/IRiskCalculatorService.cs, RiskCalculatorService.cs
       Views/Calculator/
 
+    Escrow/                       # Peer Escrow P2P (Ethereum)
+      Controllers/EscrowController.cs (MVC + API)
+      Models/ (6 archivos)
+      Services/IEscrowService.cs, EscrowService.cs
+      Helpers/EthFormat.cs
+      Views/Escrow/Dashboard, Detail
+
   Views/Home/Index, About, Contact  # Paginas principales
   Views/Blog/Index, Post            # Blog tecnico
   Views/Shared/_Layout.cshtml       # Navbar unificada dark + footer 4 columnas
@@ -137,16 +146,21 @@ NavegaStudio/
 | Backtesting | `/Backtesting/Backtest` |
 | Crypto Dashboard | `/Crypto/Dashboard` |
 | Risk Calculator | `/Risk/Calculator` |
+| Escrow Dashboard | `/Escrow/Escrow/Dashboard` |
+| Escrow Detail | `/Escrow/Escrow/Detail/{id}` |
 | API Prices | `/api/prices` |
 | API Arbitrage | `/api/arbitrage` |
 | API Risk | `/api/risk/calculate` |
+| API Escrow All | `/api/escrow/all` |
+| API Escrow Create | `/api/escrow/create` |
+| API Escrow Info | `/api/escrow/contract-info` |
 | SignalR Hub | `/pricehub` |
 
 **Decisiones arquitectonicas:**
-- 2 DbContexts separados (BacktestDbContext + CryptoDbContext) - no comparten tablas
+- 3 DbContexts separados (BacktestDbContext + CryptoDbContext + EscrowDbContext) - no comparten tablas
 - Areas para resolver conflictos de nombres de controladores
 - Rutas API explicitas `[Route("api/...")]` para que el JS no necesite cambios
-- CSS scoped: `.crypto-dashboard` wrapper evita que el tema oscuro afecte otras paginas
+- CSS scoped: `.crypto-dashboard` y `.peer-escrow` wrappers evitan que temas oscuros afecten otras paginas
 - InMemory database como fallback cuando no hay PostgreSQL configurado
 
 ---
@@ -289,6 +303,62 @@ Leverage = PositionValue / AccountCapital
 
 ---
 
+### **Area 4: Peer Escrow** (`/Escrow/Escrow/Dashboard`)
+
+**Descripcion:**
+Sistema de pagos P2P trustless con smart contracts Ethereum. Los fondos se bloquean en escrow hasta que ambas partes acuerdan la transaccion. Incluye sistema de arbitraje para resolución de disputas. Funciona en demo mode (InMemory) sin necesidad de blockchain.
+
+**Estados del escrow (7):**
+Created, Funded, Shipped, Completed, Disputed, Resolved, Cancelled
+
+**Funcionalidades:**
+- Dashboard con lista de escrows y formulario de creacion
+- Detalle con progress bar, timeline de eventos y acciones por rol
+- Role switcher (Buyer/Seller/Arbiter) en demo mode
+- Creacion de escrows con validacion de direcciones Ethereum
+- Confirm Shipment (seller), Confirm Receipt (buyer)
+- Raise Dispute con razon (buyer/seller), Resolve Dispute con % split (arbiter)
+- Cancel Escrow con refund (buyer)
+- Fee calculations: arbiter fee en basis points (100 = 1%)
+- Toast notifications para feedback de acciones
+
+**Endpoints API:**
+```
+GET  /api/escrow/all              - Todos los escrows
+GET  /api/escrow/{id}             - Escrow por ID
+GET  /api/escrow/user/{address}   - Escrows por direccion
+POST /api/escrow/create           - Crear escrow
+POST /api/escrow/{id}/ship        - Confirmar envio
+POST /api/escrow/{id}/confirm     - Confirmar recepcion
+POST /api/escrow/{id}/dispute     - Levantar disputa
+POST /api/escrow/{id}/resolve     - Resolver disputa
+POST /api/escrow/{id}/cancel      - Cancelar escrow
+GET  /api/escrow/contract-info    - Info del contrato + isDemoMode
+```
+
+**Modelos clave:**
+- `EscrowTransaction` - Entidad principal con 7 estados, fee calculations, navigation a Events
+- `EscrowEvent` - Eventos del timeline (Action, PerformedBy, Details, Timestamp)
+- `EscrowViewModel` - ViewModel con helpers de estado, permisos por rol, badge classes
+- `DashboardViewModel` - Lista + isDemoMode + CreateForm
+- `CreateEscrowRequest` - DTO con validaciones (regex Ethereum address, rangos)
+- `ActionRequest`, `DisputeRequest`, `ResolveRequest` - DTOs para acciones API
+- `EthereumSettings` - Config: RpcUrl, ContractAddress, ChainId, ChainName
+
+**Archivos clave:**
+- `Areas/Escrow/Controllers/EscrowController.cs` - MVC views + API endpoints ([Area("Escrow")])
+- `Areas/Escrow/Services/EscrowService.cs` - Logica de negocio + demo mode
+- `Areas/Escrow/Helpers/EthFormat.cs` - Formateo ETH (trailing zeros removal)
+- `Data/EscrowDbContext.cs` - 3er DbContext (indexes, precision 18,8, State→string)
+- `Data/EscrowDataSeeder.cs` - 3 escrows demo con eventos
+- `Areas/Escrow/Views/Escrow/Dashboard.cshtml` - Lista + formulario creacion
+- `Areas/Escrow/Views/Escrow/Detail.cshtml` - Detalle + acciones + timeline
+- `wwwroot/css/escrow.css` - Scoped bajo `.peer-escrow` (variables --pe-*)
+- `wwwroot/js/escrow.js` - Cliente API + role switcher + toast notifications
+- `wwwroot/contracts/PeerEscrow.abi.json` - ABI para futura integracion blockchain
+
+---
+
 ### **Paginas del Sitio (no Areas)**
 
 **About** (`/Home/About`): Bio, areas de expertise (service-cards), metodologia de trabajo (3 pasos), stack tecnologico (tech-badges), valores (4 cards), CTA a Contact.
@@ -341,7 +411,7 @@ Leverage = PositionValue / AccountCapital
 ### **Database**
 - **Produccion:** PostgreSQL 15 (Supabase/Neon.tech)
 - **Desarrollo:** EF Core InMemory (fallback automatico)
-- **2 DbContexts:** BacktestDbContext + CryptoDbContext
+- **3 DbContexts:** BacktestDbContext + CryptoDbContext + EscrowDbContext
 
 ### **Frontend**
 - **Templates:** Razor Views (MVC, no Pages)
@@ -402,7 +472,7 @@ Leverage = PositionValue / AccountCapital
 
 **Infraestructura (Ano 1):**
 - Hosting (1 app unificada): 0€ (Railway/Render gratis)
-- Databases (2 PostgreSQL): 0€ (Supabase/Neon gratis)
+- Databases (3 PostgreSQL): 0€ (Supabase/Neon gratis)
 - Dominio navegastudio.es: 12€/ano
 - Email profesional: 0€ (Zoho Mail gratis)
 - **Total infraestructura:** 12€/ano
@@ -499,8 +569,8 @@ Leverage = PositionValue / AccountCapital
 - ✅ Proyecto 3: Risk Calculator (codigo + deploy)
 - ✅ GitHub READMEs profesionales
 - ✅ Dominio navegastudio.es configurado
-- ✅ **Unificacion de los 3 proyectos en NavegaStudio** (ASP.NET Core Areas)
-- ✅ Landing page con navbar compartida y 3 cards de acceso
+- ✅ **Unificacion de los 4 proyectos en NavegaStudio** (ASP.NET Core Areas)
+- ✅ Landing page con navbar compartida y 4 cards de acceso
 - ✅ 10 estrategias de trading implementadas (SMA, RSI, MACD, Bollinger, EMA, Stochastic, ADX, Donchian, VWAP, Z-Score)
 
 ### **Mes 2: Lanzamiento**
@@ -510,6 +580,7 @@ Leverage = PositionValue / AccountCapital
 - ✅ Navbar actualizada con About y Blog + CTA apunta a Contact
 - ✅ Footer 4 columnas (Brand, Herramientas, Empresa, Contacto)
 - ✅ PlanDeAccion.md actualizado
+- ✅ Peer Escrow integrado como Area 4 (dashboard, detail, API, demo mode)
 - [ ] Configurar PostgreSQL produccion (Supabase)
 - [ ] Configurar dominio navegastudio.es → Railway
 - [ ] Perfiles Upwork + LinkedIn completos
@@ -581,9 +652,12 @@ navegastudio.es/
 ├── /Backtesting/Backtest (Motor de backtesting)
 ├── /Crypto/Dashboard (Dashboard precios crypto)
 ├── /Risk/Calculator (Calculadora de riesgo)
+├── /Escrow/Escrow/Dashboard (Dashboard escrows P2P)
+├── /Escrow/Escrow/Detail/{id} (Detalle escrow)
 ├── /api/prices (REST - precios crypto)
 ├── /api/arbitrage (REST - oportunidades arbitraje)
 ├── /api/risk/calculate (REST - calculo riesgo)
+├── /api/escrow/* (REST - escrow CRUD + acciones)
 └── /pricehub (SignalR WebSocket)
 ```
 
@@ -648,7 +722,7 @@ NavegaStudio (App unica):
 - Platform: Railway.app
 - URL produccion: https://navegastudio-production.up.railway.app
 - URL dominio: navegastudio.es (pendiente configurar DNS)
-- Database: Supabase/Neon.tech PostgreSQL (2 BD: backtest + crypto)
+- Database: Supabase/Neon.tech PostgreSQL (3 BD: backtest + crypto + escrow)
 - Fallback: EF Core InMemory cuando no hay connection string
 - SSL: Auto (Let's Encrypt via Railway)
 - Puerto local: 5000
@@ -851,6 +925,7 @@ Demo live (sitio unificado):
 - Backtesting: https://navegastudio.es/Backtesting/Backtest
 - Crypto: https://navegastudio.es/Crypto/Dashboard
 - Risk: https://navegastudio.es/Risk/Calculator
+- Escrow: https://navegastudio.es/Escrow/Escrow/Dashboard
 
 Repositorio:
 - https://github.com/navegastudio/NavegaStudio
@@ -881,7 +956,7 @@ My approach:
 4. Deliverables: [List specific]
 
 Live demos (sitio unificado):
-• https://navegastudio.es (Backtesting, Crypto, Risk Calculator)
+• https://navegastudio.es (Backtesting, Crypto, Risk Calculator, Peer Escrow)
 • GitHub: github.com/navegastudio/NavegaStudio
 
 Rate: €90/hour (estimated [X] hours = €[total])
@@ -972,6 +1047,18 @@ Client assumes all financial risk from use of system.
    - CSS: blog-content tipografia + validation dark override
    - 8 nuevos archivos .resx + 2 actualizados
    - PlanDeAccion.md reescrito completamente
+✅ Peer Escrow integrado como Area (26 Feb 2026):
+   - Area Escrow con Controller (MVC + API), 6 Models, Service, Helper
+   - EscrowDbContext (3er DbContext) con InMemory fallback
+   - EscrowDataSeeder con 3 escrows demo (Funded, Shipped, Completed)
+   - Dashboard + Detail views con CSS scoped (.peer-escrow)
+   - 7 estados: Created, Funded, Shipped, Completed, Disputed, Resolved, Cancelled
+   - Role switcher (Buyer/Seller/Arbiter) en demo mode
+   - 10 API endpoints (/api/escrow/*)
+   - Portfolio card (4 columnas col-lg-3), navbar dropdown, footer link
+   - i18n: 4 .resx actualizados (ES/EN) para navbar, footer, portfolio
+   - EthereumSettings en appsettings.json (Sepolia, demo mode por defecto)
+   - 19 archivos nuevos + 9 modificados
 ```
 
 ### **Esta semana**
@@ -982,7 +1069,7 @@ Client assumes all financial risk from use of system.
 ✅ About, Blog y Contact implementados (22 Feb 2026)
 ✅ Navbar y footer actualizados
 ✅ PlanDeAccion.md actualizado
-☐ Configurar PostgreSQL produccion (Supabase - 2 BD)
+☐ Configurar PostgreSQL produccion (Supabase - 3 BD)
 ☐ Configurar dominio navegastudio.es apuntando al deploy unico
 ☐ README profesional del repo unificado
 ☐ Perfil Upwork completo con demo link
@@ -1048,7 +1135,7 @@ Client assumes all financial risk from use of system.
 
 **Documento vivo - Actualizar segun avance proyecto**
 
-**Ultima revision:** 22 Feb 2026 - Email SMTP (MailKit + Gmail) implementado
+**Ultima revision:** 26 Feb 2026 - Peer Escrow integrado como Area 4
 **Proxima revision:** Post-configuracion PostgreSQL produccion + DNS
 
 ---
@@ -1214,4 +1301,34 @@ Email SMTP (sesion 22 Feb 2026):
   NavegaStudio.csproj                                - +MailKit 4.9.*, +UserSecretsId
   appsettings.json                                   - +seccion "Email" (Password vacio)
   .gitignore                                         - +contraseñaSMTP.txt
+
+Peer Escrow integrado (sesion 26 Feb 2026):
+  Areas/Escrow/Controllers/EscrowController.cs       - NUEVO: MVC + API endpoints ([Area("Escrow")])
+  Areas/Escrow/Models/EscrowTransaction.cs            - NUEVO: entidad + enum EscrowState (7 estados)
+  Areas/Escrow/Models/EscrowEvent.cs                  - NUEVO: eventos del escrow
+  Areas/Escrow/Models/EscrowViewModel.cs              - NUEVO: ViewModels (Escrow + Dashboard)
+  Areas/Escrow/Models/CreateEscrowRequest.cs          - NUEVO: DTO creacion con validaciones
+  Areas/Escrow/Models/ApiRequests.cs                  - NUEVO: ActionRequest, DisputeRequest, ResolveRequest
+  Areas/Escrow/Models/EthereumSettings.cs             - NUEVO: config Ethereum (RPC, contract, chain)
+  Areas/Escrow/Services/IEscrowService.cs             - NUEVO: interfaz
+  Areas/Escrow/Services/EscrowService.cs              - NUEVO: logica de negocio + demo mode
+  Areas/Escrow/Helpers/EthFormat.cs                   - NUEVO: utilidad formato ETH
+  Areas/Escrow/Views/_ViewImports.cshtml              - NUEVO: usings + tag helpers
+  Areas/Escrow/Views/_ViewStart.cshtml                - NUEVO: layout compartido
+  Areas/Escrow/Views/Escrow/Dashboard.cshtml          - NUEVO: lista + formulario creacion
+  Areas/Escrow/Views/Escrow/Detail.cshtml             - NUEVO: detalle + acciones + timeline
+  Data/EscrowDbContext.cs                              - NUEVO: 3er DbContext
+  Data/EscrowDataSeeder.cs                             - NUEVO: 3 escrows demo
+  wwwroot/css/escrow.css                               - NUEVO: scoped bajo .peer-escrow
+  wwwroot/js/escrow.js                                 - NUEVO: cliente API + role switcher
+  wwwroot/contracts/PeerEscrow.abi.json                - NUEVO: ABI contrato
+  Program.cs                                           - +EscrowDbContext, +EthereumSettings, +IEscrowService, +seed
+  appsettings.json                                     - +EscrowConnection, +seccion Ethereum
+  Views/Shared/_Layout.cshtml                          - +dropdown item Escrow, +footer link
+  Views/Home/Index.cshtml                              - +portfolio card Escrow, col-lg-4→col-lg-3
+  Resources/Views.Shared._Layout.es.resx               - +Nav_PeerEscrow, +Footer_PeerEscrow
+  Resources/Views.Shared._Layout.en.resx               - +Nav_PeerEscrow, +Footer_PeerEscrow
+  Resources/Views.Home.Index.es.resx                   - +Portfolio_Escrow* (8 keys)
+  Resources/Views.Home.Index.en.resx                   - +Portfolio_Escrow* (8 keys)
+  CLAUDE.md                                            - +Area 4 documentacion, actualizaciones varias
 ```

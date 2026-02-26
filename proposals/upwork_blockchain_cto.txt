@@ -1,0 +1,59 @@
+Hi,
+
+This role aligns directly with what I've been building — financial infrastructure handling real transactions, real-time data, and multi-exchange integration. What caught my attention is that you're not building a token looking for a use case — you're building a platform where the token serves a real function. That's the only way token economics work long-term.
+
+I run NavegaStudio, a live fintech platform I architected and built end-to-end. Here's what's running right now:
+
+CRYPTO EXCHANGE AGGREGATOR
+- Real-time price streaming from Binance, Coinbase, and Kraken via SignalR WebSockets
+- REST API layer (/api/prices, /api/arbitrage) + arbitrage detection
+- Background services broadcasting every 15s, memory caching, rate limit optimization
+- Solved production issues: Coinbase rate limiting (optimized from 12 to 6 requests per cycle), locale-sensitive decimal parsing that silently corrupted prices across server regions
+
+TRADING ENGINE WITH REALISTIC EXECUTION
+- 10 algorithmic strategies (SMA, RSI, MACD, Bollinger, Stochastic, ADX, Donchian, VWAP, Mean Reversion, EMA)
+- Realistic simulation: slippage, commissions, position sizing, stop-loss/take-profit with intrabar checking
+- 18 metrics: Sharpe, Sortino, Profit Factor, Kelly Criterion, Max Drawdown, benchmark vs buy-and-hold
+- Same financial logic token staking needs — calculating yields, simulating incentive structures, modeling economic outcomes
+
+RISK MANAGEMENT CALCULATOR
+- Position sizing, Kelly Criterion, leverage, Long/Short with commissions
+- Math translates directly to staking mechanics and governance weight calculations
+
+HOW THIS MAPS TO YOUR PLATFORM
+
+Payment & settlement → I built trade execution with realistic cost modeling (fees, slippage, sizing). Direct buyer-seller payment with escrow is the same domain.
+
+Real-time infrastructure → Streaming from 3 exchanges via WebSocket with REST fallback. Your marketplace needs identical reliability for transactions and notifications.
+
+On-chain vs off-chain → I already made this decision: database for history/settings vs real-time external sources for prices/signals. For you: payments and governance on-chain, catalog and profiles off-chain. Getting this boundary right early saves months later.
+
+Token economics → My engine models complex financial scenarios across thousands of simulated trades. Designing reward curves that don't inflate away, staking yields that stay sustainable, governance weights that resist manipulation — financial modeling applied to tokenomics.
+
+Security → Input validation, XSS prevention, explicit failure handling, graceful degradation. For a platform handling real value, this needs to be in the architecture from day one.
+
+ARCHITECTURE
+
+Unified three financial apps into one platform (ASP.NET Core 8, Areas pattern): 2 database contexts, background services, SignalR hubs, REST APIs, Docker multi-stage builds, bilingual i18n. Built entirely solo — architecture through production debugging.
+
+APPROACH
+
+- Weeks 1-2: Audit POC, map flows to on-chain vs off-chain, identify gaps and overengineering
+- Weeks 3-4: Chain selection with trade-off analysis (cost, throughput, ecosystem, tooling), smart contract architecture for token logic
+- Month 2: Core contracts, wallet integration specs, API contracts for frontend/backend, security review framework
+- Month 3+: Governance module, incentive tuning from testnet data, engineering team hiring and onboarding
+
+AVAILABILITY
+
+30+ hrs/week, 6+ months — works perfectly. A CTO role needs sustained focus. I'm available full working weeks (CET, Mon-Fri) as my primary engagement.
+
+Rate: $150/hour. Open to milestone structures or equity components given the long-term CTO scope.
+
+I enjoy the early stage — defining architecture before there's legacy, setting standards that compound, building something that outlasts launch. That's what I did with NavegaStudio.
+
+Live: https://navegastudio-production.up.railway.app
+Source: github.com/navegastudio/NavegaStudio
+
+Let's talk.
+
+NavegaStudio | https://navegastudio.es

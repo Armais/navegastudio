@@ -84,4 +84,12 @@
   <data name="CTA_Title" xml:space="preserve"><value>Have an idea for your financial application?</value></data>
   <data name="CTA_Subtitle" xml:space="preserve"><value>Tell us about your project. We build the solution you need.</value></data>
   <data name="CTA_Button" xml:space="preserve"><value>Get in Touch</value></data>
+  <data name="Portfolio_EscrowTitle" xml:space="preserve"><value>Peer Escrow</value></data>
+  <data name="Portfolio_EscrowBadge" xml:space="preserve"><value>Blockchain</value></data>
+  <data name="Portfolio_EscrowDesc" xml:space="preserve"><value>Trustless P2P payments powered by Ethereum smart contracts. Funds locked until both parties agree.</value></data>
+  <data name="Portfolio_EscrowF1" xml:space="preserve"><value>Non-custodial smart contracts</value></data>
+  <data name="Portfolio_EscrowF2" xml:space="preserve"><value>Arbiter system with configurable fee</value></data>
+  <data name="Portfolio_EscrowF3" xml:space="preserve"><value>7-state lifecycle machine</value></data>
+  <data name="Portfolio_EscrowF4" xml:space="preserve"><value>Demo mode without blockchain</value></data>
+  <data name="Portfolio_EscrowBtn" xml:space="preserve"><value>Open Escrow</value></data>
 </root>

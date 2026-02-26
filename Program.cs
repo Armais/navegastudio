@@ -4,6 +4,8 @@ using NavegaStudio.Areas.Backtesting.Services;
 using NavegaStudio.Areas.Crypto.Services;
 using NavegaStudio.Areas.Crypto.Hubs;
 using NavegaStudio.Areas.Risk.Services;
+using NavegaStudio.Areas.Escrow.Services;
+using NavegaStudio.Areas.Escrow.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
@@ -40,6 +42,17 @@ builder.Services.AddHostedService<PriceUpdateService>();
 // Risk
 builder.Services.AddScoped<IRiskCalculatorService, RiskCalculatorService>();
 
+// Escrow DB (3rd DbContext)
+var escrowConn = builder.Configuration.GetConnectionString("EscrowConnection");
+if (!string.IsNullOrEmpty(escrowConn))
+    builder.Services.AddDbContext<EscrowDbContext>(o => o.UseNpgsql(escrowConn));
+else
+    builder.Services.AddDbContext<EscrowDbContext>(o => o.UseInMemoryDatabase("EscrowDb"));
+
+// Escrow Services
+builder.Services.Configure<EthereumSettings>(builder.Configuration.GetSection("Ethereum"));
+builder.Services.AddScoped<IEscrowService, EscrowService>();
+
 // Blog
 builder.Services.AddSingleton<IBlogService, BlogService>();
 
@@ -66,6 +79,10 @@ using (var scope = app.Services.CreateScope())
 
     var cryptoContext = scope.ServiceProvider.GetRequiredService<CryptoDbContext>();
     cryptoContext.Database.EnsureCreated();
+
+    var escrowContext = scope.ServiceProvider.GetRequiredService<EscrowDbContext>();
+    escrowContext.Database.EnsureCreated();
+    EscrowDataSeeder.Seed(escrowContext);
 }
 
 if (!app.Environment.IsDevelopment())
@@ -90,7 +107,7 @@ app.UseAuthorization();
 // Area route (must come first)
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 // Default route
 app.MapControllerRoute(

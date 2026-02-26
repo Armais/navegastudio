@@ -11,7 +11,11 @@
       "Bash(railway variables:*)",
       "Bash(railway up:*)",
       "Bash(railway logs:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(cd:*)",
+      "Bash(cd \"/c/Users/adiaz/NuevasIdeasJuegosApps/AppsFinancieras/PeerEscrow\" && dotnet restore 2>&1)",
+      "Bash(timeout:*)",
+      "Bash(dotnet run:*)"
     ]
   }
 }

@@ -1,0 +1,155 @@
+/* ── PeerEscrow Scoped Styles ─────────────────────────────── */
+/* All rules scoped under .peer-escrow to avoid conflicts with NavegaStudio global CSS */
+
+.peer-escrow {
+    --pe-bg-card: #111827;
+    --pe-border: #1e293b;
+    --pe-accent: #3b82f6;
+    --pe-accent-hover: #2563eb;
+    --pe-text: #e2e8f0;
+    --pe-text-muted: #94a3b8;
+    --pe-success: #22c55e;
+    --pe-danger: #ef4444;
+    --pe-warning: #f59e0b;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.peer-escrow .card {
+    background: var(--pe-bg-card);
+    border-color: var(--pe-border);
+    color: var(--pe-text);
+}
+.peer-escrow .card-header {
+    background: rgba(255,255,255,0.03);
+    border-bottom-color: var(--pe-border);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.peer-escrow .btn-primary {
+    background: var(--pe-accent);
+    border-color: var(--pe-accent);
+}
+.peer-escrow .btn-primary:hover {
+    background: var(--pe-accent-hover);
+    border-color: var(--pe-accent-hover);
+}
+.peer-escrow .btn-outline-primary {
+    color: var(--pe-accent);
+    border-color: var(--pe-accent);
+}
+.peer-escrow .btn-outline-primary:hover,
+.peer-escrow .btn-outline-primary.active {
+    background: var(--pe-accent);
+    color: white;
+}
+
+/* ── Forms ──────────────────────────────────────────────── */
+.peer-escrow .form-control,
+.peer-escrow .form-select {
+    background: #0a0f1e;
+    border-color: var(--pe-border);
+    color: var(--pe-text);
+}
+.peer-escrow .form-control:focus,
+.peer-escrow .form-select:focus {
+    background: #0a0f1e;
+    border-color: var(--pe-accent);
+    color: var(--pe-text);
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+.peer-escrow .form-control::placeholder { color: var(--pe-text-muted); }
+.peer-escrow .form-text { color: var(--pe-text-muted); }
+.peer-escrow .form-label { color: var(--pe-text); }
+.peer-escrow .form-range::-webkit-slider-thumb { background: var(--pe-accent); }
+
+/* ── Tables ─────────────────────────────────────────────── */
+.peer-escrow .table { color: var(--pe-text); }
+.peer-escrow .table td,
+.peer-escrow .table th { border-color: var(--pe-border); }
+
+/* ── Breadcrumb ─────────────────────────────────────────── */
+.peer-escrow .breadcrumb { background: transparent; }
+.peer-escrow .breadcrumb-item a { color: var(--pe-accent); }
+.peer-escrow .breadcrumb-item.active { color: var(--pe-text-muted); }
+.peer-escrow .breadcrumb-item + .breadcrumb-item::before { color: var(--pe-text-muted); }
+
+/* ── Escrow Cards (Dashboard) ───────────────────────────── */
+.peer-escrow .escrow-card {
+    background: var(--pe-bg-card);
+    border: 1px solid var(--pe-border);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+.peer-escrow .escrow-card:hover {
+    border-color: var(--pe-accent);
+    color: inherit;
+}
+
+/* ── Timeline ───────────────────────────────────────────── */
+.peer-escrow .timeline-item {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid var(--pe-border);
+}
+.peer-escrow .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pe-accent);
+}
+
+/* ── Alert overrides ────────────────────────────────────── */
+.peer-escrow .alert-warning {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+}
+
+/* ── Utilities ──────────────────────────────────────────── */
+.peer-escrow code {
+    color: var(--pe-accent);
+    background: rgba(59, 130, 246, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+
+.peer-escrow .text-success { color: var(--pe-success) !important; }
+.peer-escrow .text-danger { color: var(--pe-danger) !important; }
+
+/* ── Landing page ──────────────────────────────────────── */
+.peer-escrow .pe-hero {
+    padding: 7rem 0 4rem;
+    background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
+}
+.peer-escrow .text-accent { color: var(--pe-accent); }
+.peer-escrow .pe-text-muted { color: var(--pe-text-muted); }
+.peer-escrow .pe-state-section { background: var(--pe-bg-card); }
+.peer-escrow .pe-cta-section { background: linear-gradient(135deg, #1e3a5f, #0f172a); }
+
+.peer-escrow .btn-outline-secondary {
+    color: var(--pe-text-muted);
+    border-color: var(--pe-border);
+}
+.peer-escrow .btn-outline-secondary:hover {
+    color: var(--pe-text);
+    background: rgba(255,255,255,0.05);
+    border-color: var(--pe-text-muted);
+}
+
+/* ── Toast notifications ────────────────────────────────── */
+.toast-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}

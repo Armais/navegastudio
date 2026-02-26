@@ -124,7 +124,7 @@
         </div>
         <div class="row g-4">
             <!-- Backtesting Engine -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="0">
                 <div class="tool-card">
                     <div class="tool-header">
                         <h5>@L["Portfolio_BacktestTitle"]</h5>
@@ -145,7 +145,7 @@
                 </div>
             </div>
             <!-- Crypto Aggregator -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
                 <div class="tool-card">
                     <div class="tool-header">
                         <h5>@L["Portfolio_CryptoTitle"]</h5>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <!-- Risk Calculator -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="200">
                 <div class="tool-card">
                     <div class="tool-header">
                         <h5>@L["Portfolio_RiskTitle"]</h5>
@@ -183,6 +183,27 @@
                     </div>
                     <div class="tool-footer">
                         <a asp-area="Risk" asp-controller="Calculator" asp-action="Index" class="btn btn-ns-primary w-100">@L["Portfolio_RiskBtn"]</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Peer Escrow -->
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h5>@L["Portfolio_EscrowTitle"]</h5>
+                        <span class="tool-badge">@L["Portfolio_EscrowBadge"]</span>
+                    </div>
+                    <div class="tool-body">
+                        <p>@L["Portfolio_EscrowDesc"]</p>
+                        <ul class="tool-features">
+                            <li>@L["Portfolio_EscrowF1"]</li>
+                            <li>@L["Portfolio_EscrowF2"]</li>
+                            <li>@L["Portfolio_EscrowF3"]</li>
+                            <li>@L["Portfolio_EscrowF4"]</li>
+                        </ul>
+                    </div>
+                    <div class="tool-footer">
+                        <a asp-area="Escrow" asp-controller="Home" asp-action="Index" class="btn btn-ns-primary w-100">@L["Portfolio_EscrowBtn"]</a>
                     </div>
                 </div>
             </div>

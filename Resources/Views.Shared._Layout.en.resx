@@ -38,4 +38,6 @@
   <data name="Footer_Blog" xml:space="preserve"><value>Blog</value></data>
   <data name="Footer_ContactLink" xml:space="preserve"><value>Contact</value></data>
   <data name="Nav_FinancialApps" xml:space="preserve"><value>Financial Apps</value></data>
+  <data name="Nav_PeerEscrow" xml:space="preserve"><value>Peer Escrow</value></data>
+  <data name="Footer_PeerEscrow" xml:space="preserve"><value>Peer Escrow</value></data>
 </root>

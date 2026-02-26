@@ -84,4 +84,12 @@
   <data name="CTA_Title" xml:space="preserve"><value>¿Tienes una idea para tu aplicación financiera?</value></data>
   <data name="CTA_Subtitle" xml:space="preserve"><value>Cuéntanos tu proyecto. Construimos la solución que necesitas.</value></data>
   <data name="CTA_Button" xml:space="preserve"><value>Contactar</value></data>
+  <data name="Portfolio_EscrowTitle" xml:space="preserve"><value>Peer Escrow</value></data>
+  <data name="Portfolio_EscrowBadge" xml:space="preserve"><value>Blockchain</value></data>
+  <data name="Portfolio_EscrowDesc" xml:space="preserve"><value>Pagos P2P trustless con smart contracts Ethereum. Fondos bloqueados hasta acuerdo de ambas partes.</value></data>
+  <data name="Portfolio_EscrowF1" xml:space="preserve"><value>Smart contracts no-custodial</value></data>
+  <data name="Portfolio_EscrowF2" xml:space="preserve"><value>Sistema de arbitraje con fee configurable</value></data>
+  <data name="Portfolio_EscrowF3" xml:space="preserve"><value>7 estados de ciclo de vida</value></data>
+  <data name="Portfolio_EscrowF4" xml:space="preserve"><value>Demo mode sin blockchain</value></data>
+  <data name="Portfolio_EscrowBtn" xml:space="preserve"><value>Abrir Escrow</value></data>
 </root>
